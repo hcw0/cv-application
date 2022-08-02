@@ -1,13 +1,18 @@
 
 import './App.css';
+import React, {Component} from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render (){
+    return (
+      <div className='page'>
+        <p>ososdf</p>
+      </div>
+    )
+  }
 }
-
 export default App;
