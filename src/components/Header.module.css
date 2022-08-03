@@ -1,7 +1,8 @@
 .header {
     display: flex;
     justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
 }
 
 .fullName {
@@ -11,3 +12,12 @@
     text-align: center;
 }
 
+.contactContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.contactContainer > p {
+    margin: 0;
+    margin-top: 5px;
+}

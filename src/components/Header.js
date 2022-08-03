@@ -21,29 +21,29 @@ class Header extends Component {
     }
 
     setValueIfEmpty = (event, value) => {
-        this.setState({
-            [event.target.name]: value,
-            nameInputWidth: 8
-        })
+        if (this.state.fullName == ""){
+            this.setState({
+                [event.target.name]: value,
+                nameInputWidth: 8
+            })
+        }
     }
 
     changeInputWidth = event => {
-        console.log(event.target.value.length)
         this.setState({
-            nameInputWidth: event.target.value.length,
+            nameInputWidth: event.target.value.length + 2,
         })
     }
 
     render(){
         return(
             <div className={HeaderCSS.header}>
-                    <input style={{width: this.state.nameInputWidth + "ch"}} className={HeaderCSS.fullName} 
+                <input style={{width: this.state.nameInputWidth + "ch"}} className={HeaderCSS.fullName} 
                     type="text" name="fullName" value={this.state.fullName} 
                     onChange={event => {this.handleInputChange(event); this.changeInputWidth(event)}}
                     onBlur = {event => {this.setValueIfEmpty(event, "Name")}}/>
-                    <div></div>
-                <div>
-
+                <div className={HeaderCSS.contactContainer}>
+                    <input type="text" />
                 </div>
             </div>
         )
