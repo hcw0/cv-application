@@ -1,0 +1,13 @@
+.header {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.fullName {
+    font-weight: bold;
+    font-size: 40px;
+    max-width: 100%;
+    text-align: center;
+}
+

@@ -10,8 +10,16 @@ body {
     margin: 0;
     padding: 0;
     background-color: #FAFAFA;
+    font-family: 'Roboto', sans-serif;
 }
 
+input {
+    border: none;
+}
+
+input:hover {
+    border: 1px solid black;
+}
 
 @page {
     size: Letter;

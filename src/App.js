@@ -1,6 +1,7 @@
 
-import './App.css';
+import AppCSS from './App.module.css';
 import React, {Component} from "react";
+import Header from "./components/Header"
 
 class App extends Component {
   constructor(props) {
@@ -9,8 +10,8 @@ class App extends Component {
 
   render (){
     return (
-      <div className='page'>
-        <p>ososdf</p>
+      <div className={AppCSS.page}>
+        <Header/>
       </div>
     )
   }
