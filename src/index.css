@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -10,7 +11,6 @@ body {
     margin: 0;
     padding: 0;
     background-color: #FAFAFA;
-    font-family: 'Roboto', sans-serif;
 }
 
 input {

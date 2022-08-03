@@ -1,3 +1,4 @@
+import { toHaveAccessibleDescription } from "@testing-library/jest-dom/dist/matchers";
 import React, {Component} from "react";
 import HeaderCSS from "./Header.module.css"
 
@@ -6,11 +7,20 @@ class Header extends Component {
         super(props);
         this.state = {
             fullName: "John Doe",
-            nameInputWidth: 12
+            nameInputWidth: 12,
+            phoneNumber: "(123) 456-789",
+            phoneInputWidth: 12,
+            email: "johndoe@gmail.com",
+            emailInputWidth: 18,
+            linkedin: "linkedin.com/in/john",
+            linkedinInputWidth: 18,
+            github: "github.com/john",
+            githubInputWidth: 14,
         }
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.changeInputWidth = this.changeInputWidth.bind(this);
-        this.setValueIfEmpty = this.setValueIfEmpty.bind(this);
+        this.changeInputWidthLong = this.changeInputWidthLong.bind(this);
+        this.changeInputWidthShort = this.changeInputWidthShort.bind(this);
+        this.setNameInputIfEmpty = this.setNameInputIfEmpty.bind(this);
     }
 
     handleInputChange = (event) => {
@@ -20,18 +30,44 @@ class Header extends Component {
 
     }
 
-    setValueIfEmpty = (event, value) => {
+    setNameInputIfEmpty = (event, value) => {
         if (this.state.fullName == ""){
             this.setState({
                 [event.target.name]: value,
                 nameInputWidth: 8
             })
+        } else if (this.state.phoneNumber == ""){
+            this.setState({
+                [event.target.name]: value,
+                phoneInputWidth: 12
+            })
+        } else if (this.state.email == ""){
+            this.setState({
+                [event.target.name]: value,
+                emailInputWidth: 18
+            })
+        } else if (this.state.linkedin == ""){
+            this.setState({
+                [event.target.name]: value,
+                linkedinInputWidth: 18
+            })
+        } else if (this.state.github == ""){
+            this.setState({
+                [event.target.name]: value,
+                githubInputWidth: 14
+            })
         }
     }
 
-    changeInputWidth = event => {
+    changeInputWidthLong = (event, inputName) => {
         this.setState({
-            nameInputWidth: event.target.value.length + 2,
+            [inputName]: event.target.value.length + 2,
+        })
+    }
+
+    changeInputWidthShort = (event, inputName) => {
+        this.setState({
+            [inputName]: event.target.value.length,
         })
     }
 
@@ -40,10 +76,34 @@ class Header extends Component {
             <div className={HeaderCSS.header}>
                 <input style={{width: this.state.nameInputWidth + "ch"}} className={HeaderCSS.fullName} 
                     type="text" name="fullName" value={this.state.fullName} 
-                    onChange={event => {this.handleInputChange(event); this.changeInputWidth(event)}}
-                    onBlur = {event => {this.setValueIfEmpty(event, "Name")}}/>
+                    onChange={event => {this.handleInputChange(event); this.changeInputWidthLong(event, "nameInputWidth")}}
+                    onBlur = {event => {this.setNameInputIfEmpty(event, "Name")}}/>
+
                 <div className={HeaderCSS.contactContainer}>
-                    <input type="text" />
+                    <div className={HeaderCSS.contactCard}>
+                        <input style={{width: this.state.phoneInputWidth + "ch"}} type="text" name="phoneNumber" 
+                        value={this.state.phoneNumber} 
+                        onChange={event => {this.handleInputChange(event); this.changeInputWidthShort(event, "phoneInputWidth")}}
+                        onBlur = {event => {this.setNameInputIfEmpty(event, "(123) 456-789")}}/>
+                    </div>
+                    <div className={HeaderCSS.contactCard}>
+                        <input style={{width: this.state.emailInputWidth + "ch"}} type="text" name="email" 
+                        value={this.state.email} 
+                        onChange={event => {this.handleInputChange(event); this.changeInputWidthShort(event, "emailInputWidth")}}
+                        onBlur = {event => {this.setNameInputIfEmpty(event, "johndoe@gmail.com")}}/>
+                    </div>
+                    <div className={HeaderCSS.contactCard}>
+                        <input style={{width: this.state.linkedinInputWidth + "ch"}} type="text" name="linkedin" 
+                        value={this.state.linkedin} 
+                        onChange={event => {this.handleInputChange(event); this.changeInputWidthShort(event, "linkedinInputWidth")}}
+                        onBlur = {event => {this.setNameInputIfEmpty(event, "linkedin.com/in/john")}}/>
+                    </div>
+                    <div style={{border: 0}} className={HeaderCSS.contactCard}>
+                        <input style={{width: this.state.githubInputWidth + "ch"}} type="text" name="github" 
+                        value={this.state.github} 
+                        onChange={event => {this.handleInputChange(event); this.changeInputWidthShort(event, "githubInputWidth")}}
+                        onBlur = {event => {this.setNameInputIfEmpty(event, "github.com/john")}}/>
+                    </div>
                 </div>
             </div>
         )
