@@ -5,7 +5,6 @@ class Education extends Component {
     constructor(props) {
         super(props);
 
-        let id = 3;
         let defaultUniversity1 = {
             name: "Arizona State University",
             nameInputWidth: 20,
@@ -29,7 +28,7 @@ class Education extends Component {
         }
 
         this.state = {
-            universities: [defaultUniversity1, defaultUniversity2],
+            universities: [defaultUniversity2, defaultUniversity1],
             defaultName: "University Name",
             defaultLocation: "City, State",
             defaultDegree: "Degree name",
@@ -111,7 +110,6 @@ class Education extends Component {
                     {this.state.universities.map((university, index) => {
                         return (
                             <div key={index} className={EducationCSS.educationCard}>
-                                <div className={EducationCSS.educationCard}>
                                     <div className={EducationCSS.mainInformation}>
                                         <input style={{ width: university.nameInputWidth + "ch" }} className={EducationCSS.universityName}
                                             type="text" name="name" value={university.name}
@@ -132,7 +130,6 @@ class Education extends Component {
                                             onChange={event => { this.handleInputChange(event, index); this.changeInputWidth(event, index, "timeInputWidth") }}
                                             onBlur={event => { this.setNameInputIfEmpty(event, index) }} />
                                     </div>
-                                </div>
                             </div>
                         )
 
