@@ -3,6 +3,7 @@ import AppCSS from './App.module.css';
 import React, {Component} from "react";
 import Header from "./components/Header"
 import Education from "./components/Education"
+import Experience from './components/Experience';
 
 class App extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class App extends Component {
       <div className={AppCSS.page}>
         <Header/>
         <Education/>
+        <Experience/>
       </div>
     )
   }
