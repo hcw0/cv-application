@@ -6,28 +6,34 @@ class Education extends Component {
         super(props);
         
         let id = 3;
-        const defaultUniversity1 = {
-            name: "University Name",
-            nameInputWidth: 14,
-            location: "City, State",
-            locationInputWidth: 9,
-            degree: "Bachelor of Arts in Computer Science",
-            degreeInputWidth: 31,
+        let defaultUniversity1 = {
+            name: "Arizona State University",
+            nameInputWidth: 20,
+            location: "Tempze, AZ",
+            locationInputWidth: 10,
+            degree: "Bachelor of Science in Computer Science, Minor in Finance",
+            degreeInputWidth: 52,
             time: "Aug. 2014 - May 2018",
-            timeInputWidth: 20,
-            id: 1,
-            defaultName: "University Name",
-            defaultLocation: "City, State",
-            defaultDegree: "Bachelor of Arts in Computer Science",
-            defaultTime: "Aug. 2014 - May 2018",
+            timeInputWidth: 19,
         }
 
-        const defaultUniversity2 = {
-
+        let defaultUniversity2 = {
+            name: "Duke University",
+            nameInputWidth: 13,
+            location: "Durham, NC",
+            locationInputWidth: 10,
+            degree: "Masters of Science in Computer Science",
+            degreeInputWidth: 33,
+            time: "Aug. 2018 - May 2020",
+            timeInputWidth: 19,
         }
 
         this.state = {
-            universities: [defaultUniversity1]
+            universities: [defaultUniversity1, defaultUniversity2],
+            defaultName: "University Name",
+            defaultLocation: "City, State",
+            defaultDegree: "Degree name",
+            defaultTime: "Month Year - Month Year",
         }
     }
 
@@ -37,21 +43,39 @@ class Education extends Component {
         newUniversities[index][varName] = event.target.value;
         this.setState({
             universities: newUniversities,
-        })
-
+        });
     }
 
-    setNameInputIfEmpty = (event, value) => {
-
+    setNameInputIfEmpty = (event, index) => {
+        const newUniversities = [...this.state.universities];
+        const inputName = event.target.name;
+        const inputWidth = inputName + "InputWidth";
+        if (event.target.value == ""){
+            if(inputName == "name"){
+                newUniversities[index][inputName] = this.state.defaultName;
+                newUniversities[index][inputWidth] = 14;
+            } else if (inputName == "location"){
+                newUniversities[index][inputName] = this.state.defaultLocation;
+                newUniversities[index][inputWidth] = 9;
+            } else if (inputName == "degree"){
+                newUniversities[index][inputName] = this.state.defaultDegree;
+                newUniversities[index][inputWidth] = 12;
+            } else if (inputName == "time"){
+                newUniversities[index][inputName] = this.state.defaultTime;
+                newUniversities[index][inputWidth] = 21;
+            }
+        }
+        this.setState({
+            universities: newUniversities,
+        });
     }
 
     changeInputWidth = (event, index, inputName) => {
         const newUniversities = [...this.state.universities];
         newUniversities[index][inputName] = event.target.value.length;
-        console.log(newUniversities[index][inputName])
         this.setState({
-            universities: newUniversities
-        })
+            universities: newUniversities,
+        });
     }
 
     render(){
@@ -92,21 +116,21 @@ class Education extends Component {
                                         <input style={{width: university.nameInputWidth + "ch"}} className={EducationCSS.universityName}
                                             type="text" name="name" value={university.name} 
                                             onChange={event => {this.handleInputChange(event, index); this.changeInputWidth(event, index, "nameInputWidth")}}
-                                            onBlur = {event => {this.setNameInputIfEmpty(event, university.defaultName)}}/>
+                                            onBlur = {event => {this.setNameInputIfEmpty(event, index)}}/>
                                         <input style={{width: university.locationInputWidth + "ch"}} className={EducationCSS.universityLocation}
                                             type="text" name="location" value={university.location} 
                                             onChange={event => {this.handleInputChange(event, index); this.changeInputWidth(event, index, "locationInputWidth")}}
-                                            onBlur = {event => {this.setNameInputIfEmpty(event, university.defaultLocation)}}/>
+                                            onBlur = {event => {this.setNameInputIfEmpty(event, index)}}/>
                                     </div>
                                     <div className={EducationCSS.secondaryInformation}>
                                         <input style={{width: university.degreeInputWidth + "ch"}} className={EducationCSS.universityDegree}
                                             type="text" name="degree" value={university.degree} 
                                             onChange={event => {this.handleInputChange(event, index); this.changeInputWidth(event, index, "degreeInputWidth")}}
-                                            onBlur = {event => {this.setNameInputIfEmpty(event, university.defaultDegree)}}/>
+                                            onBlur = {event => {this.setNameInputIfEmpty(event, index)}}/>
                                         <input style={{width: university.timeInputWidth + "ch"}} className={EducationCSS.universityTime}
                                             type="text" name="time" value={university.time} 
                                             onChange={event => {this.handleInputChange(event, index); this.changeInputWidth(event, index, "timeInputWidth")}}
-                                            onBlur = {event => {this.setNameInputIfEmpty(event, university.defaultTime)}}/>
+                                            onBlur = {event => {this.setNameInputIfEmpty(event, index)}}/>
                                     </div>
                                 </div>
                             </div>
