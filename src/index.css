@@ -13,11 +13,11 @@ body {
     background-color: #FAFAFA;
 }
 
-input {
+input, textarea {
     border: none;
 }
 
-input:hover {
+input:hover, textarea:hover {
     border: 1px solid black;
 }
 
@@ -31,3 +31,5 @@ input:hover {
         height: 279mm;        
     }
 }
+
+textarea { resize: none; }
