@@ -32,4 +32,7 @@ input:hover, textarea:hover {
     }
 }
 
-textarea { resize: none; }
+textarea {
+    resize: none; 
+    display: block;
+}
