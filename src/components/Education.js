@@ -1,10 +1,10 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import EducationCSS from "./Education.module.css"
 
 class Education extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        
+
         let id = 3;
         let defaultUniversity1 = {
             name: "Arizona State University",
@@ -12,7 +12,7 @@ class Education extends Component {
             location: "Tempze, AZ",
             locationInputWidth: 10,
             degree: "Bachelor of Science in Computer Science, Minor in Finance",
-            degreeInputWidth: 52,
+            degreeInputWidth: 48,
             time: "Aug. 2014 - May 2018",
             timeInputWidth: 19,
         }
@@ -50,17 +50,17 @@ class Education extends Component {
         const newUniversities = [...this.state.universities];
         const inputName = event.target.name;
         const inputWidth = inputName + "InputWidth";
-        if (event.target.value == ""){
-            if(inputName == "name"){
+        if (event.target.value == "") {
+            if (inputName == "name") {
                 newUniversities[index][inputName] = this.state.defaultName;
                 newUniversities[index][inputWidth] = 14;
-            } else if (inputName == "location"){
+            } else if (inputName == "location") {
                 newUniversities[index][inputName] = this.state.defaultLocation;
                 newUniversities[index][inputWidth] = 9;
-            } else if (inputName == "degree"){
+            } else if (inputName == "degree") {
                 newUniversities[index][inputName] = this.state.defaultDegree;
                 newUniversities[index][inputWidth] = 12;
-            } else if (inputName == "time"){
+            } else if (inputName == "time") {
                 newUniversities[index][inputName] = this.state.defaultTime;
                 newUniversities[index][inputWidth] = 21;
             }
@@ -78,8 +78,8 @@ class Education extends Component {
         });
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div className={EducationCSS.mainContainer}>
                 <div className={EducationCSS.titleContainer}>
                     <p className={EducationCSS.title}>EDUCATION</p>
@@ -108,29 +108,29 @@ class Education extends Component {
                                 onBlur = {event => {this.setNameInputIfEmpty(event, "Aug. 2014 - May 2018")}}/>
                         </div>
                     </div> */}
-                    {this.state.universities.map( (university, index) => {
+                    {this.state.universities.map((university, index) => {
                         return (
                             <div key={index} className={EducationCSS.educationCard}>
                                 <div className={EducationCSS.educationCard}>
                                     <div className={EducationCSS.mainInformation}>
-                                        <input style={{width: university.nameInputWidth + "ch"}} className={EducationCSS.universityName}
-                                            type="text" name="name" value={university.name} 
-                                            onChange={event => {this.handleInputChange(event, index); this.changeInputWidth(event, index, "nameInputWidth")}}
-                                            onBlur = {event => {this.setNameInputIfEmpty(event, index)}}/>
-                                        <input style={{width: university.locationInputWidth + "ch"}} className={EducationCSS.universityLocation}
-                                            type="text" name="location" value={university.location} 
-                                            onChange={event => {this.handleInputChange(event, index); this.changeInputWidth(event, index, "locationInputWidth")}}
-                                            onBlur = {event => {this.setNameInputIfEmpty(event, index)}}/>
+                                        <input style={{ width: university.nameInputWidth + "ch" }} className={EducationCSS.universityName}
+                                            type="text" name="name" value={university.name}
+                                            onChange={event => { this.handleInputChange(event, index); this.changeInputWidth(event, index, "nameInputWidth") }}
+                                            onBlur={event => { this.setNameInputIfEmpty(event, index) }} />
+                                        <input style={{ width: university.locationInputWidth + "ch" }} className={EducationCSS.universityLocation}
+                                            type="text" name="location" value={university.location}
+                                            onChange={event => { this.handleInputChange(event, index); this.changeInputWidth(event, index, "locationInputWidth") }}
+                                            onBlur={event => { this.setNameInputIfEmpty(event, index) }} />
                                     </div>
                                     <div className={EducationCSS.secondaryInformation}>
-                                        <input style={{width: university.degreeInputWidth + "ch"}} className={EducationCSS.universityDegree}
-                                            type="text" name="degree" value={university.degree} 
-                                            onChange={event => {this.handleInputChange(event, index); this.changeInputWidth(event, index, "degreeInputWidth")}}
-                                            onBlur = {event => {this.setNameInputIfEmpty(event, index)}}/>
-                                        <input style={{width: university.timeInputWidth + "ch"}} className={EducationCSS.universityTime}
-                                            type="text" name="time" value={university.time} 
-                                            onChange={event => {this.handleInputChange(event, index); this.changeInputWidth(event, index, "timeInputWidth")}}
-                                            onBlur = {event => {this.setNameInputIfEmpty(event, index)}}/>
+                                        <input style={{ width: university.degreeInputWidth + "ch" }} className={EducationCSS.universityDegree}
+                                            type="text" name="degree" value={university.degree}
+                                            onChange={event => { this.handleInputChange(event, index); this.changeInputWidth(event, index, "degreeInputWidth") }}
+                                            onBlur={event => { this.setNameInputIfEmpty(event, index) }} />
+                                        <input style={{ width: university.timeInputWidth + "ch" }} className={EducationCSS.universityTime}
+                                            type="text" name="time" value={university.time}
+                                            onChange={event => { this.handleInputChange(event, index); this.changeInputWidth(event, index, "timeInputWidth") }}
+                                            onBlur={event => { this.setNameInputIfEmpty(event, index) }} />
                                     </div>
                                 </div>
                             </div>

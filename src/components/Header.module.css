@@ -3,6 +3,7 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    max-width: 100%;
 }
 
 .fullName {
@@ -15,16 +16,20 @@
 .contactContainer {
     display: flex;
     flex-direction: row;
+    max-width: 100%;
+    flex-wrap: wrap;
 }
 
 .contactCard > input{
     margin: 0;
     font-size: 16px;
     text-align: center;
+    max-width: 100%;
 }
 
 .contactCard {
     padding: 1px;
     border-right: 1px solid black;
+    max-width: 100%;
 }
 

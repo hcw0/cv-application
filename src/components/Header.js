@@ -4,18 +4,25 @@ import HeaderCSS from "./Header.module.css"
 
 class Header extends Component {
     constructor(props){
-        super(props);
+        super(props);   
+        
         this.state = {
             fullName: "John Doe",
             nameInputWidth: 12,
-            phoneNumber: "(123) 456-789",
-            phoneInputWidth: 12,
-            email: "john@gmail.com",
-            emailInputWidth: 14,
-            linkedin: "linkedin.com/in/john",
-            linkedinInputWidth: 18,
-            github: "github.com/john",
-            githubInputWidth: 14,
+            contactInfo: [
+                {phone: "(123) 456-789",
+                phoneInputWidth: 12,},
+                {email: "john@gmail.com",
+                emailInputWidth: 14,},
+                {linkedin: "linkedin.com/in/john",
+                linkedinInputWidth: 18,},
+                {github: "github.com/john",
+                githubInputWidth: 14,}
+            ],
+            defaultPhone: "(123) 456-789",
+            defaultEmail: "john@gmail.com",
+            defaultLinkedin: "linkedin.com/in/john",
+            defaultGithub: "github.com/john",
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.changeInputWidthLong = this.changeInputWidthLong.bind(this);
@@ -23,40 +30,54 @@ class Header extends Component {
         this.setNameInputIfEmpty = this.setNameInputIfEmpty.bind(this);
     }
 
-    handleInputChange = (event) => {
+    handleInputChange = (event, index) => {
+        let newContactInfo = [...this.state.contactInfo];
+        newContactInfo[index][event.target.name] = event.target.value;
+        
+        this.setState({
+            contactInfo: newContactInfo,
+        })
+    }
+
+    handleInputChangeSimple = event => {
         this.setState({
             [event.target.name]: event.target.value,
         })
-
     }
 
-    setNameInputIfEmpty = (event, value) => {
+    setNameInputIfEmpty = (event, index) => {
         if (this.state.fullName == ""){
             this.setState({
-                [event.target.name]: value,
+                [event.target.name]: "Name",
                 nameInputWidth: 8
             })
-        } else if (this.state.phoneNumber == ""){
+        } else{
+            let newContactInfo = [...this.state.contactInfo];
+            let inputName = event.target.name;
+            let inputWidth = inputName + "InputWidth";
+    
+            if (event.target.value == ""){
+                if (inputName == "phone"){
+                    newContactInfo[index][inputName] = this.state.defaultPhone;
+                    newContactInfo[index][inputWidth] = 12;
+                } else if(inputName = "email"){
+                    newContactInfo[index][inputName] = this.state.defaultEmail;
+                    newContactInfo[index][inputWidth] = 14;
+                } else if(inputName = "linkedin"){
+                    newContactInfo[index][inputName] = this.state.defaultLinkedin;
+                    newContactInfo[index][inputWidth] = 18;
+                } else if(inputName = "github"){
+                    newContactInfo[index][inputName] = this.state.defaultGithub;
+                    newContactInfo[index][inputWidth] = 14;
+                }
+            }
+
             this.setState({
-                [event.target.name]: value,
-                phoneInputWidth: 12
-            })
-        } else if (this.state.email == ""){
-            this.setState({
-                [event.target.name]: value,
-                emailInputWidth: 14
-            })
-        } else if (this.state.linkedin == ""){
-            this.setState({
-                [event.target.name]: value,
-                linkedinInputWidth: 18
-            })
-        } else if (this.state.github == ""){
-            this.setState({
-                [event.target.name]: value,
-                githubInputWidth: 14
+                contactInfo: newContactInfo,
             })
         }
+
+
     }
 
     changeInputWidthLong = (event, inputName) => {
@@ -65,9 +86,12 @@ class Header extends Component {
         })
     }
 
-    changeInputWidthShort = (event, inputName) => {
+    changeInputWidthShort = (event, index) => {
+        let newContactInfo = [...this.state.contactInfo];
+        newContactInfo[index][event.target.name + "InputWidth"] = event.target.value.length;
+        
         this.setState({
-            [inputName]: event.target.value.length,
+            contactInfo: newContactInfo,
         })
     }
 
@@ -76,11 +100,11 @@ class Header extends Component {
             <div className={HeaderCSS.header}>
                 <input style={{width: this.state.nameInputWidth + "ch"}} className={HeaderCSS.fullName} 
                     type="text" name="fullName" value={this.state.fullName} 
-                    onChange={event => {this.handleInputChange(event); this.changeInputWidthLong(event, "nameInputWidth")}}
+                    onChange={event => {this.handleInputChangeSimple(event); this.changeInputWidthLong(event, "nameInputWidth")}}
                     onBlur = {event => {this.setNameInputIfEmpty(event, "Name")}}/>
 
                 <div className={HeaderCSS.contactContainer}>
-                    <div className={HeaderCSS.contactCard}>
+                    {/* <div className={HeaderCSS.contactCard}>
                         <input style={{width: this.state.phoneInputWidth + "ch"}} type="text" name="phoneNumber" 
                         value={this.state.phoneNumber} 
                         onChange={event => {this.handleInputChange(event); this.changeInputWidthShort(event, "phoneInputWidth")}}
@@ -103,7 +127,17 @@ class Header extends Component {
                         value={this.state.github} 
                         onChange={event => {this.handleInputChange(event); this.changeInputWidthShort(event, "githubInputWidth")}}
                         onBlur = {event => {this.setNameInputIfEmpty(event, "github.com/john")}}/>
-                    </div>
+                    </div> */}
+                    {this.state.contactInfo.map((contact, index) => {
+                        return(
+                        <div style={index == this.state.contactInfo.length - 1 ? {border: 0} : {}} key={index} className={HeaderCSS.contactCard}>
+                            <input style={{width: contact[Object.keys(contact)[1]] + "ch"}} type="text" name={Object.keys(contact)[0]}
+                            value={contact[Object.keys(contact)[0]]} 
+                            onChange={event => {this.handleInputChange(event, index); this.changeInputWidthShort(event, index)}}
+                            onBlur = {event => {this.setNameInputIfEmpty(event, index)}}/>
+                        </div>
+                        )
+                    })}
                 </div>
             </div>
         )
