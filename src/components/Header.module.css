@@ -19,7 +19,6 @@
 
 .contactCard > input{
     margin: 0;
-    margin-top: 5px;
     font-size: 16px;
     text-align: center;
 }
@@ -28,3 +27,4 @@
     padding: 1px;
     border-right: 1px solid black;
 }
+

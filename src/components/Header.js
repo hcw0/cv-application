@@ -1,4 +1,4 @@
-import { toHaveAccessibleDescription } from "@testing-library/jest-dom/dist/matchers";
+
 import React, {Component} from "react";
 import HeaderCSS from "./Header.module.css"
 
@@ -10,8 +10,8 @@ class Header extends Component {
             nameInputWidth: 12,
             phoneNumber: "(123) 456-789",
             phoneInputWidth: 12,
-            email: "johndoe@gmail.com",
-            emailInputWidth: 18,
+            email: "john@gmail.com",
+            emailInputWidth: 14,
             linkedin: "linkedin.com/in/john",
             linkedinInputWidth: 18,
             github: "github.com/john",
@@ -44,7 +44,7 @@ class Header extends Component {
         } else if (this.state.email == ""){
             this.setState({
                 [event.target.name]: value,
-                emailInputWidth: 18
+                emailInputWidth: 14
             })
         } else if (this.state.linkedin == ""){
             this.setState({
@@ -90,7 +90,7 @@ class Header extends Component {
                         <input style={{width: this.state.emailInputWidth + "ch"}} type="text" name="email" 
                         value={this.state.email} 
                         onChange={event => {this.handleInputChange(event); this.changeInputWidthShort(event, "emailInputWidth")}}
-                        onBlur = {event => {this.setNameInputIfEmpty(event, "johndoe@gmail.com")}}/>
+                        onBlur = {event => {this.setNameInputIfEmpty(event, "john@gmail.com")}}/>
                     </div>
                     <div className={HeaderCSS.contactCard}>
                         <input style={{width: this.state.linkedinInputWidth + "ch"}} type="text" name="linkedin" 
