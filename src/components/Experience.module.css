@@ -1,0 +1,72 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    border-bottom: 1px solid black;
+    padding-bottom: 2px;
+    font-size: 18px;
+    margin-bottom: 2px;
+}
+
+.titleContainer {
+    width: 100%;
+}
+
+.experienceContainer {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titleDateContainer {
+    display: flex;
+    margin: 10px 0 0 0;
+    width: 100%;
+    max-width: 100%;
+    justify-content: space-between;
+}
+
+.jobTitle {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.date {
+    text-align: right;
+    font-size: 16px;
+}
+
+.companyLocationContainer {
+    display: flex;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    justify-content: space-between;
+}
+
+.location, .company {
+    margin: 0;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.location {
+    text-align: right;
+}
+
+.contributionsContainer {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 2px;
+}
+
+.contribution {
+    font-size: 14px;
+    width: 95%;
+    max-width: 95%;
+}
