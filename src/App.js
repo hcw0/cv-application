@@ -5,6 +5,7 @@ import Header from "./components/Header"
 import Education from "./components/Education"
 import Experience from './components/Experience';
 import Projects from './components/Projects';
+import Skills from './components/Skills';
 
 class App extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class App extends Component {
         <Education/>
         <Experience/>
         <Projects/>
+        <Skills/>
       </div>
     )
   }
