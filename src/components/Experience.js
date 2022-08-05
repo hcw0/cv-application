@@ -27,7 +27,7 @@ class Experience extends Component{
             title: "Machine Learning Research Asistant",
             titleInputWidth: 30,
             date: "June 2019 - Aug. 2019",
-            dateInputWidth: 17,
+            dateInputWidth: 19,
             company: "Duke University",
             companyInputWidth: 13,
             location: "Durham, NC",
