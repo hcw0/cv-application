@@ -17,6 +17,11 @@ class Projects extends Component {
 
         this.state = {
             projects: [defaultProject1],
+            defaultTitle: "Project name",
+            defaultTitleInputWidth: 11,
+            defaultMoreInformationInputWidth: 10,
+            defaultDate: "Month Year - Month Year",
+            defaultDateInputWidth: 20,
         }
     }
 
@@ -32,6 +37,26 @@ class Projects extends Component {
     changeInputWidth = (event, index) => {
         let newProjects = [...this.state.projects];
         newProjects[index][event.target.name + "InputWidth"] = event.target.value.length;
+        this.setState({
+            projects: newProjects,
+        });
+    }
+
+    setInputIfEmpty = (event, index) => {
+        let newProjects = [...this.state.projects];
+        const inputName = event.target.name;
+        const inputWidth = inputName + "InputWidth";
+        if (event.target.value == "") {
+            if (inputName == "title") {
+                newProjects[index][inputName] = this.state.defaultTitle;
+                newProjects[index][inputWidth] = this.state.defaultTitleInputWidth;
+            } else if (inputName == "moreInformation") {
+                newProjects[index][inputWidth] = this.state.defaultMoreInformationInputWidth;
+            } else if (inputName == "date") {
+                newProjects[index][inputName] = this.state.defaultDate;
+                newProjects[index][inputWidth] = this.state.defaultDateInputWidth;
+            }
+        }
         this.setState({
             projects: newProjects,
         });
@@ -53,16 +78,16 @@ class Projects extends Component {
                                         type="text" name="title" 
                                         value={project.title} className={ProjectsCSS.projectTitle}
                                         onChange={event => { this.handleInputChange(event, projectIndex); this.changeInputWidth(event, projectIndex) }}
-                                        onBlur={event => { this.setNameInputIfEmpty(event, projectIndex) }} />
+                                        onBlur={event => { this.setInputIfEmpty(event, projectIndex) }} />
                                     <input style={{ width: project.moreInformationInputWidth + "ch" }} type="text" name="moreInformation" 
                                         value={project.moreInformation} className={ProjectsCSS.moreInformation}
                                         onChange={event => { this.handleInputChange(event, projectIndex); this.changeInputWidth(event, projectIndex) }}
-                                        onBlur={event => { this.setNameInputIfEmpty(event, projectIndex) }} />
+                                        onBlur={event => { this.setInputIfEmpty(event, projectIndex) }} />
                                 </div>
                                 <input style={{ width: project.dateInputWidth + "ch" }} type="text" name="date" 
                                         value={project.date} className={ProjectsCSS.date}
                                         onChange={event => { this.handleInputChange(event, projectIndex); this.changeInputWidth(event, projectIndex) }}
-                                        onBlur={event => { this.setNameInputIfEmpty(event, projectIndex) }} />
+                                        onBlur={event => { this.setInputIfEmpty(event, projectIndex) }} />
                             </div>
                         </div>
                     )
