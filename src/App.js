@@ -4,6 +4,7 @@ import React, {Component} from "react";
 import Header from "./components/Header"
 import Education from "./components/Education"
 import Experience from './components/Experience';
+import Projects from './components/Projects';
 
 class App extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class App extends Component {
         <Header/>
         <Education/>
         <Experience/>
+        <Projects/>
       </div>
     )
   }
