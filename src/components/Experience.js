@@ -45,8 +45,8 @@ class Experience extends Component{
             dateInputWidth: 19,
             company: "Monsoon Equi Company",
             companyInputWidth: 21,
-            location: "Durham, NC",
-            locationInputWidth: 13,
+            location: "San Francisco, CA",
+            locationInputWidth: 16,
             contributions: [{text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsum corrupti blanditiis necessitatibus dolore", height: "40px"},
                             {text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique", height: "25px"},
                             ]
