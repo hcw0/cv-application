@@ -60,13 +60,13 @@ class Header extends Component {
                 if (inputName == "phone"){
                     newContactInfo[index][inputName] = this.state.defaultPhone;
                     newContactInfo[index][inputWidth] = 12;
-                } else if(inputName = "email"){
+                } else if(inputName == "email"){
                     newContactInfo[index][inputName] = this.state.defaultEmail;
                     newContactInfo[index][inputWidth] = 14;
-                } else if(inputName = "linkedin"){
+                } else if(inputName == "linkedin"){
                     newContactInfo[index][inputName] = this.state.defaultLinkedin;
                     newContactInfo[index][inputWidth] = 18;
-                } else if(inputName = "github"){
+                } else if(inputName == "github"){
                     newContactInfo[index][inputName] = this.state.defaultGithub;
                     newContactInfo[index][inputWidth] = 14;
                 }
