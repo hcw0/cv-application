@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import ProjectCSS from "./Projects.module.css";
+import ProjectsCSS from "./Projects.module.css";
 
 class Projects extends Component {
     constructor(props){
@@ -8,7 +8,11 @@ class Projects extends Component {
 
     render(){
         return (
-            <div></div>
+            <div className={ProjectsCSS.mainContainer}>
+                <div className={ProjectsCSS.titleContainer}>
+                    <p className={ProjectsCSS.title}>PROJECTS</p>
+                </div>
+            </div>
         )
     }
 }

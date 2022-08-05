@@ -1,0 +1,17 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    border-bottom: 1px solid black;
+    padding-bottom: 2px;
+    font-size: 18px;
+    margin-bottom: 2px;
+}
+
+.titleContainer {
+    width: 100%;
+}
