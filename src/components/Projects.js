@@ -12,11 +12,27 @@ class Projects extends Component {
             moreInformationInputWidth: 27,
             date: "Jan. 2017 - May 2017",
             dateInputWidth: 18,
-            description: [],
+            descriptions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab error, facilis officia libero!", height: "22px"},
+                            {text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex, corrupti.", height: "22px"},
+                            {text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum impedit cum dolore?", height: "22px"}
+                            ],
+        }
+
+        let defaultProject2 = {
+            title: "Algorithm Visualizer",
+            titleInputWidth: 18, 
+            moreInformation: "Java, Springboot, Maven, Docker",
+            moreInformationInputWidth: 27,
+            date: "Sep. 2016 - Dec. 2016",
+            dateInputWidth: 18,
+            descriptions: [{text: "LLorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate vel consequuntur", height: "22px"},
+                            {text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, qui aliquam", height: "22px"},
+                            ],
+
         }
 
         this.state = {
-            projects: [defaultProject1],
+            projects: [defaultProject1, defaultProject2],
             defaultTitle: "Project name",
             defaultTitleInputWidth: 11,
             defaultMoreInformationInputWidth: 10,
@@ -62,6 +78,21 @@ class Projects extends Component {
         });
     }
 
+    resizeTextArea = (event, projectIndex, descriptionIndex) => {
+        this.state.projects[projectIndex].descriptions[descriptionIndex].height = event.target.scrollHeight + "px";
+    }
+
+    handleTextAreaChange = (event, projectIndex, descriptionIndex) => {
+        let newProjects = [...this.state.projects];
+        let newDescriptions = [...this.state.projects[projectIndex].descriptions];
+        newDescriptions[descriptionIndex].text = event.target.value;
+        newProjects[projectIndex].contributions = newDescriptions;
+
+        this.setState({
+            projects: newProjects,
+        })
+    }
+
     render(){
         return (
             <div className={ProjectsCSS.mainContainer}>
@@ -89,6 +120,19 @@ class Projects extends Component {
                                         onChange={event => { this.handleInputChange(event, projectIndex); this.changeInputWidth(event, projectIndex) }}
                                         onBlur={event => { this.setInputIfEmpty(event, projectIndex) }} />
                             </div>
+
+                            <ul className={ProjectsCSS.descriptionContainer}>
+                                {project.descriptions.map((description, descriptionIndex) => {
+                                    return (
+                                        <li key={descriptionIndex}>
+                                            <textarea style={{height: description.height}}
+                                            className={ProjectsCSS.description} value={description.text} name=""
+                                            rows="1" onChange={event => {this.handleTextAreaChange(event, projectIndex, descriptionIndex); 
+                                            this.resizeTextArea(event, projectIndex, descriptionIndex)}}></textarea>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
                         </div>
                     )
                 })}
