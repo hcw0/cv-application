@@ -6,7 +6,7 @@ class Experience extends Component{
     constructor(props){
         super(props);
 
-         let defaultExperience1 = {
+        let defaultExperience1 = {
             title: "Software Engineer",
             titleInputWidth: 15,
             date: "June 2020 - Present",
@@ -15,16 +15,46 @@ class Experience extends Component{
             companyInputWidth: 14,
             location: "Manhattan, NY",
             locationInputWidth: 13,
-            contributions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, numquam", height: "25px"},
+            contributions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, numquam", height: "22px"},
                             {text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsum corrupti blanditiis necessitatibus dolore" +
-                            "nam numquam error ratione dolores recusandae, sint ad explicabo voluptatem alias praesentium minus cum quasi laboriosam", height: "58px"},
+                            "nam numquam error ratione dolores recusandae, sint ad explicabo voluptatem alias praesentium minus cum quasi laboriosam", height: "57px"},
                             {text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique" +
                             "minima natus ipsam quaerat fugiat reprehenderit distinctio", height: "40px"},
                             ]
-         }
+        }
+
+        let defaultExperience2 = {
+            title: "Machine Learning Research Asistant",
+            titleInputWidth: 30,
+            date: "June 2019 - Aug. 2019",
+            dateInputWidth: 17,
+            company: "Duke University",
+            companyInputWidth: 13,
+            location: "Durham, NC",
+            locationInputWidth: 11,
+            contributions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque", height: "22px"},
+                            {text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsum corrupti blanditiis necessitatibus dolore", height: "40px"},
+                            {text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique", height: "22px"},
+                            ]
+        }
+
+        let defaultExperience3 = {
+            title: "Software Engineer Intern",
+            titleInputWidth: 21,
+            date: "June 2018 - Aug. 2018",
+            dateInputWidth: 19,
+            company: "Monsoon Equi Company",
+            companyInputWidth: 21,
+            location: "Durham, NC",
+            locationInputWidth: 13,
+            contributions: [{text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsum corrupti blanditiis necessitatibus dolore", height: "40px"},
+                            {text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique", height: "25px"},
+                            ]
+
+        }
 
         this.state = {
-            experiences: [defaultExperience1],
+            experiences: [defaultExperience1, defaultExperience2, defaultExperience3],
             defaultTitle: "Title name",
             defaultTitleInputWidth: 9,
             defaultDate: "Month Year - Month Year",
