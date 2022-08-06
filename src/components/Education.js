@@ -30,9 +30,13 @@ class Education extends Component {
         this.state = {
             universities: [defaultUniversity2, defaultUniversity1],
             defaultName: "University Name",
+            defaultNameInputWidth: 14,
             defaultLocation: "City, State",
+            defaultLocationInputWidth: 9,
             defaultDegree: "Degree name",
+            defaultDegreeInputWidth: 12,
             defaultTime: "Month Year - Month Year",
+            defaultTimeInputWidth: 21,
             addButton: "none",
         }
     }
@@ -53,16 +57,16 @@ class Education extends Component {
         if (event.target.value == "") {
             if (inputName == "name") {
                 newUniversities[index][inputName] = this.state.defaultName;
-                newUniversities[index][inputWidth] = 14;
+                newUniversities[index][inputWidth] = this.state.defaultNameInputWidth;
             } else if (inputName == "location") {
                 newUniversities[index][inputName] = this.state.defaultLocation;
-                newUniversities[index][inputWidth] = 9;
+                newUniversities[index][inputWidth] = this.state.defaultLocationInputWidth;
             } else if (inputName == "degree") {
                 newUniversities[index][inputName] = this.state.defaultDegree;
-                newUniversities[index][inputWidth] = 12;
+                newUniversities[index][inputWidth] = this.state.defaultDegreeInputWidth;
             } else if (inputName == "time") {
                 newUniversities[index][inputName] = this.state.defaultTime;
-                newUniversities[index][inputWidth] = 21;
+                newUniversities[index][inputWidth] = this.state.defaultTimeInputWidth;
             }
         }
         this.setState({
@@ -92,12 +96,33 @@ class Education extends Component {
         })
     }
 
+    addEducationElement = event => {
+        let defaultEducation = {
+            name: this.state.defaultName,
+            nameInputWidth: this.state.defaultNameInputWidth,
+            location: this.state.defaultLocation,
+            locationInputWidth: this.state.defaultLocationInputWidth,
+            degree: this.state.defaultDegree,
+            degreeInputWidth: this.state.defaultDegreeInputWidth,
+            time: this.state.defaultTime,
+            timeInputWidth: this.state.defaultTimeInputWidth,
+        }
+
+        let newUniversities = [...this.state.universities, defaultEducation];
+
+        this.setState({
+            universities: newUniversities,
+        })
+    }
+
     render() {
         return (
             <div className={EducationCSS.mainContainer}>
                 <div className={EducationCSS.titleContainer} onMouseEnter={this.showAddButton} onMouseLeave={this.hideAddButton}>
                     <span className={EducationCSS.title}>EDUCATION</span>
-                    <button style={{display: this.state.addButton}} className={EducationCSS.addButton}><span>+</span></button>
+                    <button style={{display: this.state.addButton}} className={EducationCSS.addButton} onClick={this.addEducationElement}> 
+                        <span>+</span>
+                    </button>
                 </div>
 
                 <div className={EducationCSS.educationContainer}>
