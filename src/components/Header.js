@@ -91,30 +91,6 @@ class Header extends Component {
                     onBlur = {event => {this.setNameInputIfEmpty(event, "Name")}}/>
 
                 <div className={HeaderCSS.contactContainer}>
-                    {/* <div className={HeaderCSS.contactCard}>
-                        <input style={{width: this.state.phoneInputWidth + "ch"}} type="text" name="phoneNumber" 
-                        value={this.state.phoneNumber} 
-                        onChange={event => {this.handleInputChange(event); this.changeInputWidthShort(event, "phoneInputWidth")}}
-                        onBlur = {event => {this.setNameInputIfEmpty(event, "(123) 456-789")}}/>
-                    </div>
-                    <div className={HeaderCSS.contactCard}>
-                        <input style={{width: this.state.emailInputWidth + "ch"}} type="text" name="email" 
-                        value={this.state.email} 
-                        onChange={event => {this.handleInputChange(event); this.changeInputWidthShort(event, "emailInputWidth")}}
-                        onBlur = {event => {this.setNameInputIfEmpty(event, "john@gmail.com")}}/>
-                    </div>
-                    <div className={HeaderCSS.contactCard}>
-                        <input style={{width: this.state.linkedinInputWidth + "ch"}} type="text" name="linkedin" 
-                        value={this.state.linkedin} 
-                        onChange={event => {this.handleInputChange(event); this.changeInputWidthShort(event, "linkedinInputWidth")}}
-                        onBlur = {event => {this.setNameInputIfEmpty(event, "linkedin.com/in/john")}}/>
-                    </div>
-                    <div style={{border: 0}} className={HeaderCSS.contactCard}>
-                        <input style={{width: this.state.githubInputWidth + "ch"}} type="text" name="github" 
-                        value={this.state.github} 
-                        onChange={event => {this.handleInputChange(event); this.changeInputWidthShort(event, "githubInputWidth")}}
-                        onBlur = {event => {this.setNameInputIfEmpty(event, "github.com/john")}}/>
-                    </div> */}
                     {this.state.contactInfo.map((contact, index) => {
                         return(
                         <div style={index == this.state.contactInfo.length - 1 ? {border: 0} : {}} key={index} className={HeaderCSS.contactCard}>
