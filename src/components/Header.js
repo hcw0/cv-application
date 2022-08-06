@@ -19,10 +19,6 @@ class Header extends Component {
                 {github: "github.com/john",
                 githubInputWidth: 14,}
             ],
-            defaultPhone: "(123) 456-789",
-            defaultEmail: "john@gmail.com",
-            defaultLinkedin: "linkedin.com/in/john",
-            defaultGithub: "github.com/john",
             buttonDisplay: "none",
         }
         this.handleInputChange = this.handleInputChange.bind(this);
