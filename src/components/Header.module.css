@@ -16,7 +16,7 @@
 .contactContainer {
     display: flex;
     flex-direction: row;
-    max-width: 100%;
+    max-width: 95%;
     flex-wrap: wrap;
 }
 
@@ -33,3 +33,17 @@
     max-width: 100%;
 }
 
+.addButton {
+    font-size: 15px;
+    background-color: white;
+    border-color: rgb(9, 255, 0);
+    border-radius: 5px;
+    color: rgb(9, 255, 0);
+    text-align: center;
+}
+
+.addButton:active{
+    color: white;
+    background-color: rgb(9, 255, 0);
+    border-color: rgb(9, 255, 0);
+}

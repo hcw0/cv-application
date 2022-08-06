@@ -23,6 +23,7 @@ class Header extends Component {
             defaultEmail: "john@gmail.com",
             defaultLinkedin: "linkedin.com/in/john",
             defaultGithub: "github.com/john",
+            buttonDisplay: "none",
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.changeInputWidthLong = this.changeInputWidthLong.bind(this);
@@ -82,6 +83,20 @@ class Header extends Component {
 
     }
 
+    showButton = event => {
+        event.preventDefault();
+        this.setState({
+            buttonDisplay: "inline-block",
+        })
+    }
+    
+    hideButton = event => {
+        event.preventDefault();
+        this.setState({
+            buttonDisplay: "none",
+        })
+    }
+
     render(){
         return(
             <div className={HeaderCSS.header}>
@@ -89,8 +104,8 @@ class Header extends Component {
                     type="text" name="fullName" value={this.state.fullName} 
                     onChange={event => {this.handleInputChangeSimple(event); this.changeInputWidthLong(event, "nameInputWidth")}}
                     onBlur = {event => {this.setNameInputIfEmpty(event, "Name")}}/>
-
-                <div className={HeaderCSS.contactContainer}>
+                
+                <div className={HeaderCSS.contactContainer} onMouseEnter={this.showButton} onMouseLeave={this.hideButton}>
                     {this.state.contactInfo.map((contact, index) => {
                         return(
                         <div style={index == this.state.contactInfo.length - 1 ? {border: 0} : {}} key={index} className={HeaderCSS.contactCard}>
@@ -101,6 +116,7 @@ class Header extends Component {
                         </div>
                         )
                     })}
+                    <button style={{display: this.state.buttonDisplay}} className={HeaderCSS.addButton}><span>+</span></button>
                 </div>
             </div>
         )
