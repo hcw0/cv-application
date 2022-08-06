@@ -14,6 +14,7 @@ class Education extends Component {
             degreeInputWidth: 48,
             time: "Aug. 2014 - May 2018",
             timeInputWidth: 19,
+            deleteButtonDisplay: "none"
         }
 
         let defaultUniversity2 = {
@@ -25,6 +26,7 @@ class Education extends Component {
             degreeInputWidth: 33,
             time: "Aug. 2018 - May 2020",
             timeInputWidth: 19,
+            deleteButtonDisplay: "none"
         }
 
         this.state = {
@@ -106,9 +108,36 @@ class Education extends Component {
             degreeInputWidth: this.state.defaultDegreeInputWidth,
             time: this.state.defaultTime,
             timeInputWidth: this.state.defaultTimeInputWidth,
+            deleteButtonDisplay: "none"
         }
 
         let newUniversities = [...this.state.universities, defaultEducation];
+
+        this.setState({
+            universities: newUniversities,
+        })
+    }
+
+    showDeleteButton = (event, index) => {
+        let newUniversities = this.state.universities;
+        newUniversities[index].deleteButtonDisplay = "inline-block";
+        this.setState({
+            universities: newUniversities
+        })
+    }
+
+    hideDeleteButton = (event, index) => {
+        let newUniversities = this.state.universities;
+        newUniversities[index].deleteButtonDisplay = "none";
+        this.setState({
+            universities: newUniversities
+        })
+    }
+
+    deleteEducationItem = (event, index) => {
+        let newUniversities = this.state.universities.filter((university, universityIndex) => {
+            return universityIndex !== index;
+        })
 
         this.setState({
             universities: newUniversities,
@@ -130,10 +159,17 @@ class Education extends Component {
                         return (
                             <div key={index} className={EducationCSS.educationCard}>
                                     <div className={EducationCSS.mainInformation}>
-                                        <input style={{ width: university.nameInputWidth + "ch" }} className={EducationCSS.universityName}
-                                            type="text" name="name" value={university.name}
-                                            onChange={event => { this.handleInputChange(event, index); this.changeInputWidth(event, index, "nameInputWidth") }}
-                                            onBlur={event => { this.setNameInputIfEmpty(event, index) }} />
+                                        <div onMouseEnter={event => this.showDeleteButton(event, index)} onMouseLeave={event => this.hideDeleteButton(event, index)}>
+                                            <input style={{ width: university.nameInputWidth + "ch" }} className={EducationCSS.universityName}
+                                                type="text" name="name" value={university.name}
+                                                onChange={event => { this.handleInputChange(event, index); this.changeInputWidth(event, index, "nameInputWidth") }}
+                                                onBlur={event => { this.setNameInputIfEmpty(event, index) }} />
+                                            <button style={{display: university.deleteButtonDisplay}} className={EducationCSS.deleteButton}
+                                                onClick={event => this.deleteEducationItem(event, index)}>
+                                                <span>-</span>
+                                            </button>
+                                        </div>
+
                                         <input style={{ width: university.locationInputWidth + "ch" }} className={EducationCSS.universityLocation}
                                             type="text" name="location" value={university.location}
                                             onChange={event => { this.handleInputChange(event, index); this.changeInputWidth(event, index, "locationInputWidth") }}

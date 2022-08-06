@@ -51,13 +51,34 @@
     justify-content: space-between;
 }
 
-.mainInformation > input {
+.mainInformation > div {
     margin: 5px 0 0 0;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .universityName {
     font-weight: bold;
     font-size: 16px;
+}
+
+.deleteButton {
+    padding-right: 7.5px;
+    padding-left: 7.5px;
+    font-size: 14px;
+    background-color: white;
+    border-color: rgb(255, 0, 0);
+    border-radius: 5px;
+    color: rgb(255, 0, 0);
+    text-align: center;
+}
+
+.deleteButton:active{
+    color: white;
+    background-color: rgb(255, 0, 0);
+    border-color: rgb(255, 0, 0);
 }
 
 .universityLocation {
