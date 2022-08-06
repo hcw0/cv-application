@@ -85,28 +85,6 @@ class Education extends Component {
                 </div>
 
                 <div className={EducationCSS.educationContainer}>
-                    {/* <div className={EducationCSS.educationCard}>
-                        <div className={EducationCSS.mainInformation}>
-                            <input key="1" style={{width: this.state.universityNameInputWidth + "ch"}} className={EducationCSS.universityName}
-                                type="text" name="universityName" value={this.state.universityName} 
-                                onChange={event => {this.handleInputChange(event); this.changeInputWidth(event, "universityNameInputWidth")}}
-                                onBlur = {event => {this.setNameInputIfEmpty(event, "University Name")}}/>
-                            <input style={{width: this.state.universityLocationInputWidth + "ch"}} className={EducationCSS.universityLocation}
-                                type="text" name="universityLocation" value={this.state.universityLocation} 
-                                onChange={event => {this.handleInputChange(event); this.changeInputWidth(event, "universityLocationInputWidth")}}
-                                onBlur = {event => {this.setNameInputIfEmpty(event, "City, State")}}/>
-                        </div>
-                        <div className={EducationCSS.secondaryInformation}>
-                            <input style={{width: this.state.universityDegreeInputWidth + "ch"}} className={EducationCSS.universityDegree}
-                                type="text" name="universityDegree" value={this.state.universityDegree} 
-                                onChange={event => {this.handleInputChange(event); this.changeInputWidth(event, "universityDegreeInputWidth")}}
-                                onBlur = {event => {this.setNameInputIfEmpty(event, "Bachelor of Arts in Computer Science")}}/>
-                            <input style={{width: this.state.universityTimeInputWidth + "ch"}} className={EducationCSS.universityTime}
-                                type="text" name="universityTime" value={this.state.universityTime} 
-                                onChange={event => {this.handleInputChange(event); this.changeInputWidth(event, "universityTimeInputWidth")}}
-                                onBlur = {event => {this.setNameInputIfEmpty(event, "Aug. 2014 - May 2018")}}/>
-                        </div>
-                    </div> */}
                     {this.state.universities.map((university, index) => {
                         return (
                             <div key={index} className={EducationCSS.educationCard}>
