@@ -21,8 +21,8 @@ class Skills extends Component {
 
         this.state = {
             skills: [defaultSkills1, defaultSkills2],
-            defaultTitle: "Skill name",
-            defaultTitleInputWidth: 12,
+            defaultTitle: "Skill name:",
+            defaultTitleInputWidth: 9,
         }
     }
 
@@ -75,7 +75,7 @@ class Skills extends Component {
                     return (
                         <div key={skillIndex} className={SkillsCSS.container}>
                             <input style={{ width: skill.titleInputWidth + "ch", height: "20px"}} 
-                                type="text" name="title" 
+                                type="text" name="title"
                                 value={skill.title} className={SkillsCSS.skillTitle}
                                 onChange={event => { this.handleInputChange(event, skillIndex); this.changeInputWidth(event, skillIndex) }}
                                 onBlur={event => { this.setInputIfEmpty(event, skillIndex) }} />
