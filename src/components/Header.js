@@ -97,6 +97,19 @@ class Header extends Component {
         })
     }
 
+    addNewContactInformation = event => {
+        let defaultContact = {
+            name: "contact",
+            nameInputWidth: 7,
+        }
+        event.preventDefault();
+        let newContactInfo = [...this.state.contactInfo, defaultContact]
+
+        this.setState({
+            contactInfo: newContactInfo,
+        })
+    }
+
     render(){
         return(
             <div className={HeaderCSS.header}>
@@ -116,7 +129,9 @@ class Header extends Component {
                         </div>
                         )
                     })}
-                    <button style={{display: this.state.buttonDisplay}} className={HeaderCSS.addButton}><span>+</span></button>
+                    <button style={{display: this.state.buttonDisplay}} className={HeaderCSS.addButton} onClick={this.addNewContactInformation}>
+                        <span>+</span>
+                    </button>
                 </div>
             </div>
         )
