@@ -51,33 +51,7 @@ class Header extends Component {
                 [event.target.name]: "Name",
                 nameInputWidth: 8
             })
-        } else{
-            let newContactInfo = [...this.state.contactInfo];
-            let inputName = event.target.name;
-            let inputWidth = inputName + "InputWidth";
-    
-            if (event.target.value == ""){
-                if (inputName == "phone"){
-                    newContactInfo[index][inputName] = this.state.defaultPhone;
-                    newContactInfo[index][inputWidth] = 12;
-                } else if(inputName == "email"){
-                    newContactInfo[index][inputName] = this.state.defaultEmail;
-                    newContactInfo[index][inputWidth] = 14;
-                } else if(inputName == "linkedin"){
-                    newContactInfo[index][inputName] = this.state.defaultLinkedin;
-                    newContactInfo[index][inputWidth] = 18;
-                } else if(inputName == "github"){
-                    newContactInfo[index][inputName] = this.state.defaultGithub;
-                    newContactInfo[index][inputWidth] = 14;
-                }
-            }
-
-            this.setState({
-                contactInfo: newContactInfo,
-            })
-        }
-
-
+        } 
     }
 
     changeInputWidthLong = (event, inputName) => {
@@ -93,6 +67,19 @@ class Header extends Component {
         this.setState({
             contactInfo: newContactInfo,
         })
+    }
+
+    deleteElement = (event, index) => {
+        if (event.target.value == ""){
+            let newContactInfo = this.state.contactInfo.filter((contact, contactIndex) => {
+                return contactIndex !== index;
+            })
+    
+            this.setState({
+                contactInfo: newContactInfo,
+            })
+        }
+
     }
 
     render(){
@@ -134,7 +121,7 @@ class Header extends Component {
                             <input style={{width: contact[Object.keys(contact)[1]] + "ch"}} type="text" name={Object.keys(contact)[0]}
                             value={contact[Object.keys(contact)[0]]} 
                             onChange={event => {this.handleInputChange(event, index); this.changeInputWidthShort(event, index)}}
-                            onBlur = {event => {this.setNameInputIfEmpty(event, index)}}/>
+                            onBlur = {event => {this.deleteElement(event, index)}}/>
                         </div>
                         )
                     })}
