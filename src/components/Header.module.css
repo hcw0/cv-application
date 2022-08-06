@@ -18,6 +18,8 @@
     flex-direction: row;
     max-width: 95%;
     flex-wrap: wrap;
+    min-width: 10%;
+    min-height: 15px;
 }
 
 .contactCard > input{
