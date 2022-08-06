@@ -17,7 +17,7 @@ class Experience extends Component{
             locationInputWidth: 13,
             contributions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, numquam", height: "22px"},
                             {text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsum corrupti blanditiis necessitatibus dolore" +
-                            "nam numquam error ratione dolores recusandae, sint ad explicabo voluptatem alias praesentium minus cum quasi laboriosam", height: "57px"},
+                            "nam numquam error ratione dolores recusandae, sint ad explicabo", height: "40px"},
                             {text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique" +
                             "minima natus ipsam quaerat fugiat reprehenderit distinctio", height: "40px"},
                             ]
