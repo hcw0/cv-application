@@ -8,7 +8,11 @@ class Skills extends Component {
 
     render(){
         return (
-            <div></div>
+            <div className={SkillsCSS.mainContainer}>
+                <div className={SkillsCSS.titleContainer}>
+                    <p className={SkillsCSS.title}>SKILLS</p>
+                </div>
+            </div>
         )
     }
 }
