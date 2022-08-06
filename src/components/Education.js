@@ -33,6 +33,7 @@ class Education extends Component {
             defaultLocation: "City, State",
             defaultDegree: "Degree name",
             defaultTime: "Month Year - Month Year",
+            addButton: "none",
         }
     }
 
@@ -77,11 +78,26 @@ class Education extends Component {
         });
     }
 
+    showAddButton = event => {
+        event.preventDefault();
+        this.setState({
+            addButton: "inline-block",
+        })
+    }
+    
+    hideAddButton = event => {
+        event.preventDefault();
+        this.setState({
+            addButton: "none",
+        })
+    }
+
     render() {
         return (
             <div className={EducationCSS.mainContainer}>
-                <div className={EducationCSS.titleContainer}>
-                    <p className={EducationCSS.title}>EDUCATION</p>
+                <div className={EducationCSS.titleContainer} onMouseEnter={this.showAddButton} onMouseLeave={this.hideAddButton}>
+                    <span className={EducationCSS.title}>EDUCATION</span>
+                    <button style={{display: this.state.addButton}} className={EducationCSS.addButton}><span>+</span></button>
                 </div>
 
                 <div className={EducationCSS.educationContainer}>
