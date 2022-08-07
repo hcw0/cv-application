@@ -13,7 +13,6 @@ class Buttons extends Component {
     render(){
         return (
             <div className={ButtonsCSS.buttons}>
-                <button className={ButtonsCSS.resetButton}>Reset</button>
                 <button onClick={this.printFunction} className={ButtonsCSS.printButton}>Print</button>
             </div>
         )
