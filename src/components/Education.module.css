@@ -49,23 +49,6 @@
     font-size: 16px;
 }
 
-.deleteButton {
-    padding-right: 7.5px;
-    padding-left: 7.5px;
-    font-size: 14px;
-    background-color: white;
-    border-color: rgb(255, 0, 0);
-    border-radius: 5px;
-    color: rgb(255, 0, 0);
-    text-align: center;
-}
-
-.deleteButton:active{
-    color: white;
-    background-color: rgb(255, 0, 0);
-    border-color: rgb(255, 0, 0);
-}
-
 .universityLocation {
     font-size: 16px;
     text-align: right;
