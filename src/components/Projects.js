@@ -181,7 +181,7 @@ class Projects extends Component {
         })
     }
 
-    addProjectElement = (event, projectIndex) => {
+    addDescriptionElement = (event, projectIndex) => {
         let newDescription = {
             text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, qui aliquam", 
             height: "22px"
@@ -232,7 +232,7 @@ class Projects extends Component {
                                         onChange={event => { this.handleInputChange(event, projectIndex); this.changeInputWidth(event, projectIndex) }}
                                         onBlur={event => { this.setInputIfEmpty(event, projectIndex) }} />
                                     <div style={{display: project.buttonsContainer}} className={ProjectsCSS.buttonContainer}>
-                                        <i onClick={event => this.addProjectElement(event, projectIndex) } className="fa-solid fa-plus"></i>
+                                        <i onClick={event => this.addDescriptionElement(event, projectIndex) } className="fa-solid fa-plus"></i>
                                         <i onClick={event => this.deleteProjectElement(event, projectIndex)} className="fa-solid fa-minus"></i>
                                     </div>
                                 </div>
