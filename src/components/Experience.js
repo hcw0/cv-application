@@ -179,6 +179,30 @@ class Experience extends Component{
         })
     }
 
+    deleteExperienceElement = (event, index) => {
+        let newExperiences = this.state.experiences.filter((experience, experienceIndex) => {
+            return experienceIndex !== index;
+        })
+
+        this.setState({
+            experiences: newExperiences,
+        })
+    }
+
+    addContributionElement = (event, experienceIndex) => {
+        let newContribution = {
+            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique", 
+            height: "25px",
+        }
+
+        let newExperiences = [...this.state.experiences];
+        newExperiences[experienceIndex].contributions = [...this.state.experiences[experienceIndex].contributions, newContribution];
+
+        this.setState({
+            experiences: newExperiences,
+        })
+    }
+
     render(){
         return(
             <div className={ExperienceCSS.mainContainer}>
@@ -198,8 +222,8 @@ class Experience extends Component{
                                         onChange={event => { this.handleInputChange(event, experienceIndex); this.changeInputWidth(event, experienceIndex) }}
                                         onBlur={event => { this.setNameInputIfEmpty(event, experienceIndex) }} />
                                     <div style={{display: experience.buttonsContainer}} className={ExperienceCSS.buttonContainer}>
-                                        <i className="fa-solid fa-plus"></i>
-                                        <i className="fa-solid fa-minus"></i>
+                                        <i onClick={event => this.addContributionElement(event, experienceIndex) } className="fa-solid fa-plus"></i>
+                                        <i onClick={event => this.deleteExperienceElement(event, experienceIndex)} className="fa-solid fa-minus"></i>
                                     </div>
 
                                 </div>
