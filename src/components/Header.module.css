@@ -20,6 +20,7 @@
     flex-wrap: wrap;
     min-width: 10%;
     min-height: 15px;
+    align-items: center;
 }
 
 .contactCard > input{
