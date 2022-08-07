@@ -15,6 +15,7 @@ class Experience extends Component{
             companyInputWidth: 14,
             location: "Manhattan, NY",
             locationInputWidth: 13,
+            addContributionButton: "none",
             contributions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, numquam", height: "22px"},
                             {text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsum corrupti blanditiis necessitatibus dolore" +
                             "nam numquam error ratione dolores recusandae, sint ad explicabo", height: "40px"},
@@ -32,6 +33,7 @@ class Experience extends Component{
             companyInputWidth: 13,
             location: "Durham, NC",
             locationInputWidth: 11,
+            addContributionButton: "none",
             contributions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque", height: "22px"},
                             {text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsum corrupti blanditiis necessitatibus dolore", height: "40px"},
                             {text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique", height: "22px"},
@@ -47,10 +49,10 @@ class Experience extends Component{
             companyInputWidth: 21,
             location: "San Francisco, CA",
             locationInputWidth: 16,
+            addContributionButton: "none",
             contributions: [{text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsum corrupti blanditiis necessitatibus dolore", height: "40px"},
                             {text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique", height: "25px"},
                             ]
-
         }
 
         this.state = {
@@ -63,6 +65,7 @@ class Experience extends Component{
             defaultCompanyInputWidth: 13,
             defaultLocation: "City, State",
             defaultLocationInputWidth: 10,
+            addExperienceButton: "none",
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -124,12 +127,50 @@ class Experience extends Component{
         })
     }
  
+    showAddExperienceButton = event => {
+        event.preventDefault();
+        this.setState({
+            addExperienceButton: "inline-block",
+        })
+    }
+    
+    hideExperienceAddButton = event => {
+        event.preventDefault();
+        this.setState({
+            addExperienceButton: "none",
+        })
+    }
+
+    addExperienceItem = event => {
+        let defaultExperience = {
+            title: "Title name",
+            titleInputWidth: 9,
+            date: "Month Year - Month Year",
+            dateInputWidth: 20,
+            company: "Company name",
+            companyInputWidth: 13,
+            location: "City, State",
+            locationInputWidth: 10,
+            addContributionButton: "none",
+            contributions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique", height: "25px"},
+                            ]
+        }
+
+        let newExperiences = [...this.state.experiences, defaultExperience];
+
+        this.setState({
+            experiences: newExperiences,
+        })
+    }
 
     render(){
         return(
             <div className={ExperienceCSS.mainContainer}>
-                <div className={ExperienceCSS.titleContainer}>
-                    <p className={ExperienceCSS.title}>EXPERIENCE</p>
+                <div className={ExperienceCSS.titleContainer} onMouseEnter={this.showAddExperienceButton} onMouseLeave={this.hideExperienceAddButton}>
+                    <span className={ExperienceCSS.title}>EXPERIENCE</span>
+                    <button style={{display: this.state.addExperienceButton}} className="addButton" onClick={this.addExperienceItem}> 
+                        <span>+</span>
+                    </button>
                 </div>
                 
                 {this.state.experiences.map((experience, experienceIndex) => {
