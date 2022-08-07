@@ -195,6 +195,19 @@ class Projects extends Component {
         })
     }
 
+    deleteDescriptionIfEmpty = (event, projectIndex, descriptionIndex) => {
+        if (event.target.value == ""){
+            let newProjects = [...this.state.projects];
+            newProjects[projectIndex].descriptions = newProjects[projectIndex].descriptions.filter((contribution, index) => {
+                return index !== descriptionIndex;
+            })
+
+            this.setState({
+                projects: newProjects,
+            })
+        }
+    }
+
     render(){
         return (
             <div className={ProjectsCSS.mainContainer}>
@@ -236,7 +249,8 @@ class Projects extends Component {
                                             <textarea style={{height: description.height}}
                                             className={ProjectsCSS.description} value={description.text} name=""
                                             rows="1" onChange={event => {this.handleTextAreaChange(event, projectIndex, descriptionIndex); 
-                                            this.resizeTextArea(event, projectIndex, descriptionIndex)}}></textarea>
+                                            this.resizeTextArea(event, projectIndex, descriptionIndex)}}
+                                            onBlur={event => this.deleteDescriptionIfEmpty(event, projectIndex, descriptionIndex)}></textarea>
                                         </li>
                                     )
                                 })}
