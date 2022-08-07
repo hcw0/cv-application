@@ -149,7 +149,7 @@ class Education extends Component {
             <div className={EducationCSS.mainContainer}>
                 <div className={EducationCSS.titleContainer} onMouseEnter={this.showAddButton} onMouseLeave={this.hideAddButton}>
                     <span className={EducationCSS.title}>EDUCATION</span>
-                    <button style={{display: this.state.addButton}} className={EducationCSS.addButton} onClick={this.addEducationElement}> 
+                    <button style={{display: this.state.addButton}} className="addButton" onClick={this.addEducationElement}> 
                         <span>+</span>
                     </button>
                 </div>

@@ -125,7 +125,7 @@ class Header extends Component {
                         </div>
                         )
                     })}
-                    <button style={{display: this.state.buttonDisplay}} className={HeaderCSS.addButton} onClick={this.addNewContactInformation}>
+                    <button style={{display: this.state.buttonDisplay}} className="addButton" onClick={this.addNewContactInformation}>
                         <span>+</span>
                     </button>
                 </div>
