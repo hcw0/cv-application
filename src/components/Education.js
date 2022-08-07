@@ -149,7 +149,7 @@ class Education extends Component {
             <div className={EducationCSS.mainContainer}>
                 <div className={EducationCSS.titleContainer} onMouseEnter={this.showAddButton} onMouseLeave={this.hideAddButton}>
                     <span className={EducationCSS.title}>EDUCATION</span>
-                    <i style={{display: this.state.addButton}} onClick={this.addEducationElement} class="fa-solid fa-plus"></i>
+                    <i style={{display: this.state.addButton}} onClick={this.addEducationElement} className="fa-solid fa-plus"></i>
                 </div>
 
                 <div className={EducationCSS.educationContainer}>
@@ -162,7 +162,7 @@ class Education extends Component {
                                                 type="text" name="name" value={university.name}
                                                 onChange={event => { this.handleInputChange(event, index); this.changeInputWidth(event, index, "nameInputWidth") }}
                                                 onBlur={event => { this.setNameInputIfEmpty(event, index) }} />
-                                            <i style={{display: university.deleteButtonDisplay}} class="fa-solid fa-minus"
+                                            <i style={{display: university.deleteButtonDisplay}} className="fa-solid fa-minus"
                                                 onClick={event => this.deleteEducationItem(event, index)}></i>
                                         </div>
 
