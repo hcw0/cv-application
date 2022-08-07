@@ -10,6 +10,7 @@ class Skills extends Component {
             titleInputWidth: 10,
             description: "Python, Java, C++, PostgreSQL, JavaScript, HTML, CSS",
             descriptionHeight: "20px",
+            deleteButton: "none"
         }
 
         let defaultSkills2 = {
@@ -17,6 +18,7 @@ class Skills extends Component {
             titleInputWidth: 18,
             description: "React, Flask, Node.js, Maven, Docker, Springboot, Git, VS Code, Next.js",
             descriptionHeight: "20px", 
+            deleteButton: "none"
         }
 
         this.state = {
@@ -87,6 +89,7 @@ class Skills extends Component {
             titleInputWidth: this.state.defaultTitleInputWidth,
             description: this.state.defaultDescription,
             descriptionHeight: this.state.defaultDescriptionHeight,
+            deleteButton: "none"
         }
 
         let newSkills = [...this.state.skills, defaultSkill];
@@ -108,6 +111,34 @@ class Skills extends Component {
         }
     }
 
+    deleteSkill = (event, index) => {
+        let newSkills = this.state.skills.filter((skill, skillIndex) => {
+            return skillIndex !== index;
+        })
+
+        this.setState({
+            skills: newSkills,
+        })
+    }
+
+    showDeleteButton = (event, index) => {
+        let newSkills = [...this.state.skills];
+        newSkills[index].deleteButton = "inline-block";
+
+        this.setState({
+            skills: newSkills,
+        })
+    }
+
+    hideDeleteButton = (event, index) => {
+        let newSkills = [...this.state.skills];
+        newSkills[index].deleteButton = "none";
+
+        this.setState({
+            skills: newSkills,
+        })
+    }
+
     render(){
         return (
             <div className={SkillsCSS.mainContainer}>
@@ -118,7 +149,8 @@ class Skills extends Component {
 
                 {this.state.skills.map((skill, skillIndex) => {
                     return (
-                        <div key={skillIndex} className={SkillsCSS.container}>
+                        <div key={skillIndex} className={SkillsCSS.container} onMouseEnter={event => this.showDeleteButton(event, skillIndex)}
+                        onMouseLeave={event => this.hideDeleteButton(event, skillIndex)}>
                             <input style={{ width: skill.titleInputWidth + "ch", height: "20px"}} 
                                 type="text" name="title"
                                 value={skill.title} className={SkillsCSS.skillTitle}
@@ -129,6 +161,10 @@ class Skills extends Component {
                             rows="1" onChange={event => {this.handleInputChange(event, skillIndex); 
                             this.resizeTextArea(event, skillIndex)}}
                             onBlur={event => this.deleteSkillIfEmpty(event, skillIndex)}></textarea>
+                            <div>
+                                <i style={{display: skill.deleteButton}} onClick={event => this.deleteSkill(event, skillIndex)} className="fa-solid fa-minus"></i>
+                            </div>
+
                         </div>
                     )
                 })}
