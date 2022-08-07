@@ -203,6 +203,19 @@ class Experience extends Component{
         })
     }
 
+    deleteContributionIfEmpty = (event, experienceIndex, contributionIndex) => {
+        if (event.target.value == ""){
+            let newExperiences = [...this.state.experiences];
+            newExperiences[experienceIndex].contributions = newExperiences[experienceIndex].contributions.filter((contribution, index) => {
+                return index !== contributionIndex;
+            })
+
+            this.setState({
+                experiences: newExperiences,
+            })
+        }
+    }
+
     render(){
         return(
             <div className={ExperienceCSS.mainContainer}>
@@ -249,7 +262,8 @@ class Experience extends Component{
                                             <textarea style={{height: this.state.experiences[experienceIndex].contributions[contributionIndex].height}}
                                             className={ExperienceCSS.contribution} value={contribution.text} name="" id=""
                                             rows="1" onChange={event => {this.handleTextAreaChange(event, experienceIndex, contributionIndex); 
-                                            this.resizeTextArea(event, experienceIndex, contributionIndex)}}></textarea>
+                                            this.resizeTextArea(event, experienceIndex, contributionIndex)}}
+                                            onBlur={event => this.deleteContributionIfEmpty(event, experienceIndex, contributionIndex)}></textarea>
                                         </li>
                                     )
                                 })}
