@@ -23,6 +23,8 @@ class Skills extends Component {
             skills: [defaultSkills1, defaultSkills2],
             defaultTitle: "Skill name:",
             defaultTitleInputWidth: 9,
+            defaultDescription: "Skills list",
+            defaultDescriptionHeight: "20px",
             addButton: "none",
         }
     }
@@ -79,12 +81,27 @@ class Skills extends Component {
         })
     }
 
+    addSkillItem = event => {
+        let defaultSkill = {
+            title: this.state.defaultTitle,
+            titleInputWidth: this.state.defaultTitleInputWidth,
+            description: this.state.defaultDescription,
+            descriptionHeight: this.state.defaultDescriptionHeight,
+        }
+
+        let newSkills = [...this.state.skills, defaultSkill];
+
+        this.setState({
+            skills: newSkills,
+        })
+    }
+
     render(){
         return (
             <div className={SkillsCSS.mainContainer}>
                 <div className={SkillsCSS.titleContainer} onMouseEnter={this.showAddButton} onMouseLeave={this.hideAddButton}>
                     <span className={SkillsCSS.title}>SKILLS</span>
-                    <i style={{display: this.state.addButton}} onClick={this.addProjectElement} className="fa-solid fa-plus"></i>
+                    <i style={{display: this.state.addButton}} onClick={this.addSkillItem} className="fa-solid fa-plus"></i>
                 </div>
 
                 {this.state.skills.map((skill, skillIndex) => {
