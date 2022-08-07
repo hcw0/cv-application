@@ -16,12 +16,13 @@ class Experience extends Component{
             location: "Manhattan, NY",
             locationInputWidth: 13,
             buttonsContainer: "none",
-            contributions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, numquam", height: "22px"},
+            contributions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, numquam", height: "22px", deleteButton: "none"},
                             {text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsum corrupti blanditiis necessitatibus dolore" +
-                            "nam numquam error ratione dolores recusandae, sint ad explicabo", height: "40px"},
+                            "nam numquam error ratione dolores recusandae, sint ad explicabo", height: "40px", deleteButton: "none"},
                             {text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique" +
-                            "minima natus ipsam quaerat fugiat reprehenderit distinctio", height: "40px"},
-                            ]
+                            "minima natus ipsam quaerat fugiat reprehenderit distinctio", height: "40px", deleteButton: "none"},
+                            ],
+
         }
 
         let defaultExperience2 = {
@@ -34,10 +35,11 @@ class Experience extends Component{
             location: "Durham, NC",
             locationInputWidth: 11,
             buttonsContainer: "none",
-            contributions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque", height: "22px"},
-                            {text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsum corrupti blanditiis necessitatibus dolore", height: "40px"},
-                            {text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique", height: "22px"},
-                            ]
+            contributions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque", height: "22px", deleteButton: "none"},
+                            {text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsum corrupti blanditiis necessitatibus dolore", height: "40px", deleteButton: "none"},
+                            {text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique", height: "22px", deleteButton: "none"},
+                            ],
+            deleteButton: "none"
         }
 
         let defaultExperience3 = {
@@ -50,9 +52,10 @@ class Experience extends Component{
             location: "San Francisco, CA",
             locationInputWidth: 16,
             buttonsContainer: "none",
-            contributions: [{text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsum corrupti blanditiis necessitatibus dolore", height: "40px"},
-                            {text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique", height: "25px"},
-                            ]
+            contributions: [{text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsum corrupti blanditiis necessitatibus dolore", height: "40px", deleteButton: "none"},
+                            {text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique", height: "25px", deleteButton: "none"},
+                            ],
+            deleteButton: "none"
         }
 
         this.state = {
@@ -152,8 +155,8 @@ class Experience extends Component{
             location: "City, State",
             locationInputWidth: 10,
             buttonsContainer: "none",
-            contributions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique", height: "25px"},
-                            ]
+            contributions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique", height: "25px", deleteButton: "none"},
+                            ],
         }
 
         let newExperiences = [...this.state.experiences, defaultExperience];
@@ -193,6 +196,7 @@ class Experience extends Component{
         let newContribution = {
             text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique", 
             height: "25px",
+            deleteButton: "none"
         }
 
         let newExperiences = [...this.state.experiences];
@@ -214,6 +218,37 @@ class Experience extends Component{
                 experiences: newExperiences,
             })
         }
+    }
+
+    deleteContribution = (event, experienceIndex, contributionIndex) => {
+        let newExperiences = [...this.state.experiences];
+        newExperiences[experienceIndex].contributions = newExperiences[experienceIndex].contributions.filter((contribution, index) => {
+            return index !== contributionIndex;
+        })
+
+        this.setState({
+            experiences: newExperiences,
+        })
+        
+    }
+
+
+    showDeleteContributionButton = (event, experienceIndex, contributionIndex) => {
+        let newExperiences = [...this.state.experiences];
+        newExperiences[experienceIndex].contributions[contributionIndex].deleteButton = "inline-block";
+
+        this.setState({
+            experiences: newExperiences,
+        })
+    }
+
+    hideDeleteContributionButton = (event, experienceIndex, contributionIndex) => {
+        let newExperiences = [...this.state.experiences];
+        newExperiences[experienceIndex].contributions[contributionIndex].deleteButton = "none";
+
+        this.setState({
+            experiences: newExperiences,
+        })
     }
 
     render(){
@@ -255,7 +290,7 @@ class Experience extends Component{
                                     onChange={event => { this.handleInputChange(event, experienceIndex); this.changeInputWidth(event, experienceIndex) }}
                                     onBlur={event => { this.setNameInputIfEmpty(event, experienceIndex) }} />
                             </div>
-                            <ul className={ExperienceCSS.contributionsContainer}>
+                            {/* <ul className={ExperienceCSS.contributionsContainer}>
                                 {experience.contributions.map((contribution, contributionIndex) => {
                                     return (
                                         <li key={contributionIndex}>
@@ -267,7 +302,33 @@ class Experience extends Component{
                                         </li>
                                     )
                                 })}
-                            </ul>
+                            </ul> */}
+                            <div className={ExperienceCSS.contributionsContainer}>
+                                {experience.contributions.map((contribution, contributionIndex) => {
+                                    return (
+                                        <div key={contributionIndex} className={ExperienceCSS.contributionItemContainer}
+                                        onMouseLeave={event => this.hideDeleteContributionButton(event, experienceIndex, contributionIndex)}
+                                        onMouseEnter={event => this.showDeleteContributionButton(event, experienceIndex, contributionIndex)}>
+                                            <div className={ExperienceCSS.textareaContainer}>
+                                                <div className={ExperienceCSS.dotContainer}>
+                                                    <i className="fa-solid fa-circle"></i>
+                                                </div>
+                                                <textarea style={{height: this.state.experiences[experienceIndex].contributions[contributionIndex].height}}
+                                                className={ExperienceCSS.contribution} value={contribution.text} name="" id=""
+                                                rows="1" onChange={event => {this.handleTextAreaChange(event, experienceIndex, contributionIndex); 
+                                                this.resizeTextArea(event, experienceIndex, contributionIndex)}}
+                                                onBlur={event => this.deleteContributionIfEmpty(event, experienceIndex, contributionIndex)}></textarea>
+                                            </div>
+                                            <div>
+                                                <i onClick={event => this.deleteContribution(event, experienceIndex, contributionIndex)} 
+                                                style={{display: contribution.deleteButton}} 
+                                                className="fa-solid fa-minus"></i>
+                                            </div>
+
+                                        </div>
+                                    )
+                                })}
+                            </div>
                         </div>
                     )
                 })}    

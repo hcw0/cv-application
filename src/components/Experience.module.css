@@ -88,3 +88,21 @@
     width: 95%;
     max-width: 95%;
 }
+
+.contributionItemContainer {
+    display: flex;
+    width: 100%;
+}
+
+.textareaContainer {
+    width: 100%;
+    display: flex;
+    align-items: start;
+}
+
+.dotContainer {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    margin-left: 10px;
+}

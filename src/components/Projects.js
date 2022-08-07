@@ -12,9 +12,9 @@ class Projects extends Component {
             moreInformationInputWidth: 27,
             date: "Jan. 2017 - May 2017",
             dateInputWidth: 18,
-            descriptions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab error, facilis officia libero!", height: "22px"},
-                            {text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex, corrupti.", height: "22px"},
-                            {text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum impedit cum dolore?", height: "22px"}
+            descriptions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab error, facilis officia libero!", height: "22px", deleteButton: "none"},
+                            {text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex, corrupti.", height: "22px", deleteButton: "none"},
+                            {text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum impedit cum dolore?", height: "22px", deleteButton: "none"}
                             ],
             buttonsContainer: "none",
         }
@@ -26,8 +26,8 @@ class Projects extends Component {
             moreInformationInputWidth: 27,
             date: "Sep. 2016 - Dec. 2016",
             dateInputWidth: 18,
-            descriptions: [{text: "LLorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate vel consequuntur", height: "22px"},
-                            {text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, qui aliquam", height: "22px"},
+            descriptions: [{text: "LLorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate vel consequuntur", height: "22px", deleteButton: "none"},
+                            {text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, qui aliquam", height: "22px", deleteButton: "none"},
                             ],
             buttonsContainer: "none",
         }
@@ -117,7 +117,7 @@ class Projects extends Component {
             moreInformationInputWidth: this.state.defaultMoreInformationInputWidth,
             date: this.state.defaultDate,
             dateInputWidth: this.state.defaultDateInputWidth,
-            descriptions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab error, facilis officia libero!", height: "22px"}],
+            descriptions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab error, facilis officia libero!", height: "22px", deleteButton: "none"}],
             buttonsContainer: "none",
         }
 
@@ -148,6 +148,7 @@ class Projects extends Component {
         let newContribution = {
             text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique", 
             height: "25px",
+            deleteButton: "none"
         }
 
         let newExperiences = [...this.state.experiences];
@@ -208,6 +209,35 @@ class Projects extends Component {
         }
     }
 
+    deleteDescription = (event, projectIndex, descriptionIndex) => {
+        let newProjects = [...this.state.projects];
+        newProjects[projectIndex].descriptions = newProjects[projectIndex].descriptions.filter((contribution, index) => {
+            return index !== descriptionIndex;
+        })
+
+        this.setState({
+            projects: newProjects,
+        })
+    }
+
+    showDeleteDescriptionButton = (event, projectIndex, descriptionIndex) => {
+        let newProjects = [...this.state.projects];
+        newProjects[projectIndex].descriptions[descriptionIndex].deleteButton = "inline-block";
+
+        this.setState({
+            projects: newProjects,
+        })
+    }
+
+    hideDeleteDescriptionButton = (event, projectIndex, descriptionIndex) => {
+        let newProjects = [...this.state.projects];
+        newProjects[projectIndex].descriptions[descriptionIndex].deleteButton = "none";
+
+        this.setState({
+            projects: newProjects,
+        })
+    }
+
     render(){
         return (
             <div className={ProjectsCSS.mainContainer}>
@@ -242,7 +272,7 @@ class Projects extends Component {
                                         onBlur={event => { this.setInputIfEmpty(event, projectIndex) }} />
                             </div>
 
-                            <ul className={ProjectsCSS.descriptionContainer}>
+                            {/* <ul className={ProjectsCSS.descriptionContainer}>
                                 {project.descriptions.map((description, descriptionIndex) => {
                                     return (
                                         <li key={descriptionIndex}>
@@ -251,10 +281,38 @@ class Projects extends Component {
                                             rows="1" onChange={event => {this.handleTextAreaChange(event, projectIndex, descriptionIndex); 
                                             this.resizeTextArea(event, projectIndex, descriptionIndex)}}
                                             onBlur={event => this.deleteDescriptionIfEmpty(event, projectIndex, descriptionIndex)}></textarea>
+                                            <i onClick={event => this.deleteProjectElement(event, projectIndex)} className="fa-solid fa-minus"></i>
                                         </li>
                                     )
                                 })}
-                            </ul>
+                            </ul> */}
+                            <div className={ProjectsCSS.descriptionContainer}>
+                                {project.descriptions.map((description, descriptionIndex) => {
+                                    return (
+                                        <div key={descriptionIndex} className={ProjectsCSS.descriptionItemContainer} 
+                                        onMouseLeave={event => this.hideDeleteDescriptionButton(event, projectIndex, descriptionIndex)}
+                                        onMouseEnter={event => this.showDeleteDescriptionButton(event, projectIndex, descriptionIndex)}>
+                                            <div className={ProjectsCSS.textareaContainer}>
+                                                <div className={ProjectsCSS.dotContainer}>
+                                                    <i className="fa-solid fa-circle"></i>
+                                                </div>
+
+                                                <textarea style={{height: description.height}}
+                                                className={ProjectsCSS.description} value={description.text} name=""
+                                                rows="1" onChange={event => {this.handleTextAreaChange(event, projectIndex, descriptionIndex); 
+                                                this.resizeTextArea(event, projectIndex, descriptionIndex)}}
+                                                onBlur={event => this.deleteDescriptionIfEmpty(event, projectIndex, descriptionIndex)}></textarea>
+                                            </div>
+                                            <div>
+                                                <i onClick={event => this.deleteDescription(event, projectIndex, descriptionIndex)} 
+                                                style={{display: description.deleteButton}}
+                                                className="fa-solid fa-minus"></i>
+                                            </div>
+                                            
+                                        </div>
+                                    )
+                                })}
+                            </div>
                         </div>
                     )
                 })}
