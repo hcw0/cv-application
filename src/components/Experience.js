@@ -15,7 +15,7 @@ class Experience extends Component{
             companyInputWidth: 14,
             location: "Manhattan, NY",
             locationInputWidth: 13,
-            addContributionButton: "none",
+            buttonsContainer: "none",
             contributions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, numquam", height: "22px"},
                             {text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsum corrupti blanditiis necessitatibus dolore" +
                             "nam numquam error ratione dolores recusandae, sint ad explicabo", height: "40px"},
@@ -33,7 +33,7 @@ class Experience extends Component{
             companyInputWidth: 13,
             location: "Durham, NC",
             locationInputWidth: 11,
-            addContributionButton: "none",
+            buttonsContainer: "none",
             contributions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque", height: "22px"},
                             {text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsum corrupti blanditiis necessitatibus dolore", height: "40px"},
                             {text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique", height: "22px"},
@@ -49,7 +49,7 @@ class Experience extends Component{
             companyInputWidth: 21,
             location: "San Francisco, CA",
             locationInputWidth: 16,
-            addContributionButton: "none",
+            buttonsContainer: "none",
             contributions: [{text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsum corrupti blanditiis necessitatibus dolore", height: "40px"},
                             {text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique", height: "25px"},
                             ]
@@ -151,7 +151,7 @@ class Experience extends Component{
             companyInputWidth: 13,
             location: "City, State",
             locationInputWidth: 10,
-            addContributionButton: "none",
+            buttonsContainer: "none",
             contributions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique", height: "25px"},
                             ]
         }
@@ -163,26 +163,43 @@ class Experience extends Component{
         })
     }
 
+    showButtonsContainer = (event, index) => {
+        let newExperiences = [...this.state.experiences];
+        newExperiences[index].buttonsContainer = "inline-block";
+        this.setState({
+            experiences: newExperiences,
+        })
+    }
+
+    hideButtonsContainer = (event, index) => {
+        let newExperiences = [...this.state.experiences];
+        newExperiences[index].buttonsContainer = "none";
+        this.setState({
+            experiences: newExperiences,
+        })
+    }
+
     render(){
         return(
             <div className={ExperienceCSS.mainContainer}>
                 <div className={ExperienceCSS.titleContainer} onMouseEnter={this.showAddExperienceButton} onMouseLeave={this.hideExperienceAddButton}>
                     <span className={ExperienceCSS.title}>EXPERIENCE</span>
-                    <i style={{display: this.state.addExperienceButton}}  class="fa-solid fa-plus" onClick={this.addExperienceItem}></i>
+                    <i style={{display: this.state.addExperienceButton}}  className="fa-solid fa-plus" onClick={this.addExperienceItem}></i>
                 </div>
                 
                 {this.state.experiences.map((experience, experienceIndex) => {
                     return (
                         <div key={experienceIndex} className={ExperienceCSS.experienceContainer}>
-                            <div className={ExperienceCSS.titleDateContainer}>
+                            <div className={ExperienceCSS.titleDateContainer} onMouseEnter={event => this.showButtonsContainer(event, experienceIndex)}
+                                onMouseLeave={event => this.hideButtonsContainer(event, experienceIndex)}>
                                 <div>
                                     <input style={{ width: experience.titleInputWidth + "ch" }} type="text" name="title" 
                                         value={experience.title} className={ExperienceCSS.jobTitle}
                                         onChange={event => { this.handleInputChange(event, experienceIndex); this.changeInputWidth(event, experienceIndex) }}
                                         onBlur={event => { this.setNameInputIfEmpty(event, experienceIndex) }} />
-                                    <div className={ExperienceCSS.buttonContainer}>
-                                        <i class="fa-solid fa-plus"></i>
-                                        <i class="fa-solid fa-minus"></i>
+                                    <div style={{display: experience.buttonsContainer}} className={ExperienceCSS.buttonContainer}>
+                                        <i className="fa-solid fa-plus"></i>
+                                        <i className="fa-solid fa-minus"></i>
                                     </div>
 
                                 </div>
