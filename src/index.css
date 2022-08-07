@@ -3,7 +3,6 @@
     -moz-box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
-
 body {
     width: 100%;
     height: 100%;
@@ -37,34 +36,25 @@ textarea {
     display: block;
 }
 
-.addButton {
-    font-size: 14px;
-    background-color: white;
-    border-color: rgb(9, 255, 0);
-    border-radius: 5px;
-    color: rgb(9, 255, 0);
-    text-align: center;
+
+.fa-plus{
+    margin-right: 2px;
 }
 
-.addButton:active{
+.fa-plus:active, .fa-minus:active {
+    font-size: 10px;
+    padding: 3.5px;
     color: white;
-    background-color: rgb(9, 255, 0);
-    border-color: rgb(9, 255, 0);
-}
-
-.deleteButton {
-    padding-right: 7.5px;
-    padding-left: 7.5px;
-    font-size: 14px;
-    background-color: white;
-    border-color: rgb(255, 0, 0);
+    background-color: black;
+    border: 2px solid black;
     border-radius: 5px;
-    color: rgb(255, 0, 0);
-    text-align: center;
 }
 
-.deleteButton:active{
-    color: white;
-    background-color: rgb(255, 0, 0);
-    border-color: rgb(255, 0, 0);
+.fa-plus, .fa-minus {
+    font-size: 10px;
+    padding: 3.5px;
+    color: black;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
 }

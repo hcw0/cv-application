@@ -168,19 +168,24 @@ class Experience extends Component{
             <div className={ExperienceCSS.mainContainer}>
                 <div className={ExperienceCSS.titleContainer} onMouseEnter={this.showAddExperienceButton} onMouseLeave={this.hideExperienceAddButton}>
                     <span className={ExperienceCSS.title}>EXPERIENCE</span>
-                    <button style={{display: this.state.addExperienceButton}} className="addButton" onClick={this.addExperienceItem}> 
-                        <span>+</span>
-                    </button>
+                    <i style={{display: this.state.addExperienceButton}}  class="fa-solid fa-plus" onClick={this.addExperienceItem}></i>
                 </div>
                 
                 {this.state.experiences.map((experience, experienceIndex) => {
                     return (
                         <div key={experienceIndex} className={ExperienceCSS.experienceContainer}>
                             <div className={ExperienceCSS.titleDateContainer}>
-                                <input style={{ width: experience.titleInputWidth + "ch" }} type="text" name="title" 
-                                    value={experience.title} className={ExperienceCSS.jobTitle}
-                                    onChange={event => { this.handleInputChange(event, experienceIndex); this.changeInputWidth(event, experienceIndex) }}
-                                    onBlur={event => { this.setNameInputIfEmpty(event, experienceIndex) }} />
+                                <div>
+                                    <input style={{ width: experience.titleInputWidth + "ch" }} type="text" name="title" 
+                                        value={experience.title} className={ExperienceCSS.jobTitle}
+                                        onChange={event => { this.handleInputChange(event, experienceIndex); this.changeInputWidth(event, experienceIndex) }}
+                                        onBlur={event => { this.setNameInputIfEmpty(event, experienceIndex) }} />
+                                    <div className={ExperienceCSS.buttonContainer}>
+                                        <i class="fa-solid fa-plus"></i>
+                                        <i class="fa-solid fa-minus"></i>
+                                    </div>
+
+                                </div>
                                 <input style={{ width: experience.dateInputWidth + "ch" }} type="text" name="date"
                                     value={experience.date} className={ExperienceCSS.date}
                                     onChange={event => { this.handleInputChange(event, experienceIndex); this.changeInputWidth(event, experienceIndex) }}

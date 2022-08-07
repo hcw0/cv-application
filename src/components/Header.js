@@ -125,9 +125,7 @@ class Header extends Component {
                         </div>
                         )
                     })}
-                    <button style={{display: this.state.buttonDisplay}} className="addButton" onClick={this.addNewContactInformation}>
-                        <span>+</span>
-                    </button>
+                    <i style={{display: this.state.buttonDisplay}} class="fa-solid fa-plus" onClick={this.addNewContactInformation}></i>
                 </div>
             </div>
         )
