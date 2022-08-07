@@ -96,6 +96,18 @@ class Skills extends Component {
         })
     }
 
+    deleteSkillIfEmpty = (event, index) => {
+        if (event.target.value == ""){
+            let newSkills = this.state.skills.filter((skill, skillIndex) => {
+                return skillIndex !== index;
+            })
+
+            this.setState({
+                skills: newSkills,
+            })
+        }
+    }
+
     render(){
         return (
             <div className={SkillsCSS.mainContainer}>
@@ -115,7 +127,8 @@ class Skills extends Component {
                             <textarea style={{height: skill.descriptionHeight}}
                             className={SkillsCSS.description} value={skill.description} name="description"
                             rows="1" onChange={event => {this.handleInputChange(event, skillIndex); 
-                            this.resizeTextArea(event, skillIndex)}}></textarea>
+                            this.resizeTextArea(event, skillIndex)}}
+                            onBlur={event => this.deleteSkillIfEmpty(event, skillIndex)}></textarea>
                         </div>
                     )
                 })}
