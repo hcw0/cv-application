@@ -164,7 +164,7 @@ class Education extends Component {
                                                 type="text" name="name" value={university.name}
                                                 onChange={event => { this.handleInputChange(event, index); this.changeInputWidth(event, index, "nameInputWidth") }}
                                                 onBlur={event => { this.setNameInputIfEmpty(event, index) }} />
-                                            <button style={{display: university.deleteButtonDisplay}} className={EducationCSS.deleteButton}
+                                            <button style={{display: university.deleteButtonDisplay}} className="deleteButton"
                                                 onClick={event => this.deleteEducationItem(event, index)}>
                                                 <span>-</span>
                                             </button>
