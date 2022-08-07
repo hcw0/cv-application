@@ -16,6 +16,7 @@ class Projects extends Component {
                             {text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex, corrupti.", height: "22px"},
                             {text: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum impedit cum dolore?", height: "22px"}
                             ],
+            buttonsContainer: "none",
         }
 
         let defaultProject2 = {
@@ -28,7 +29,7 @@ class Projects extends Component {
             descriptions: [{text: "LLorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate vel consequuntur", height: "22px"},
                             {text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, qui aliquam", height: "22px"},
                             ],
-
+            buttonsContainer: "none",
         }
 
         this.state = {
@@ -116,10 +117,64 @@ class Projects extends Component {
             moreInformationInputWidth: this.state.defaultMoreInformationInputWidth,
             date: this.state.defaultDate,
             dateInputWidth: this.state.defaultDateInputWidth,
-            descriptions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab error, facilis officia libero!", height: "22px"}]
+            descriptions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab error, facilis officia libero!", height: "22px"}],
+            buttonsContainer: "none",
         }
 
         let newProjects = [...this.state.projects, defaultProject];
+
+        this.setState({
+            projects: newProjects,
+        })
+    }
+
+
+    showButtonsContainer = (event, index) => {
+        let newProjects = [...this.state.projects];
+        newProjects[index].buttonsContainer = "inline-block";
+        this.setState({
+            projects: newProjects,
+        })
+    }
+
+    hideButtonsContainer = (event, index) => {
+        let newProjects = [...this.state.projects];
+        newProjects[index].buttonsContainer = "none";
+        this.setState({
+            projects: newProjects,
+        })
+    }
+        addContributionElement = (event, experienceIndex) => {
+        let newContribution = {
+            text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis enim ut nulla similique", 
+            height: "25px",
+        }
+
+        let newExperiences = [...this.state.experiences];
+        newExperiences[experienceIndex].contributions = [...this.state.experiences[experienceIndex].contributions, newContribution];
+
+        this.setState({
+            experiences: newExperiences,
+        })
+    }
+
+    deleteContributionIfEmpty = (event, experienceIndex, contributionIndex) => {
+        if (event.target.value == ""){
+            let newExperiences = [...this.state.experiences];
+            newExperiences[experienceIndex].contributions = newExperiences[experienceIndex].contributions.filter((contribution, index) => {
+                return index !== contributionIndex;
+            })
+
+            this.setState({
+                experiences: newExperiences,
+            })
+        }
+    }
+
+    deleteProjectElement = (event, index) => {
+        let newProjects = this.state.projects.filter((project, projectIndex) => {
+            return projectIndex !== index;
+        })
 
         this.setState({
             projects: newProjects,
@@ -137,7 +192,8 @@ class Projects extends Component {
                 {this.state.projects.map((project, projectIndex) => {
                     return (
                         <div key={projectIndex} className={ProjectsCSS.projectsContainer}>
-                            <div className={ProjectsCSS.topContainer}>
+                            <div className={ProjectsCSS.topContainer} onMouseEnter={event => this.showButtonsContainer(event, projectIndex)}
+                                onMouseLeave={event => this.hideButtonsContainer(event, projectIndex)}>
                                 <div className={ProjectsCSS.leftContainer}>
                                     <input style={{ width: project.titleInputWidth + "ch", borderRight: project.moreInformation != "" ? "1px solid black" : ""}} 
                                         type="text" name="title" 
@@ -148,6 +204,10 @@ class Projects extends Component {
                                         value={project.moreInformation} className={ProjectsCSS.moreInformation}
                                         onChange={event => { this.handleInputChange(event, projectIndex); this.changeInputWidth(event, projectIndex) }}
                                         onBlur={event => { this.setInputIfEmpty(event, projectIndex) }} />
+                                    <div style={{display: project.buttonsContainer}} className={ProjectsCSS.buttonContainer}>
+                                        <i onClick={event => this.addContributionElement(event, projectIndex) } className="fa-solid fa-plus"></i>
+                                        <i onClick={event => this.deleteProjectElement(event, projectIndex)} className="fa-solid fa-minus"></i>
+                                    </div>
                                 </div>
                                 <input style={{ width: project.dateInputWidth + "ch" }} type="text" name="date" 
                                         value={project.date} className={ProjectsCSS.date}
