@@ -20,7 +20,7 @@ class Projects extends Component {
 
         let defaultProject2 = {
             title: "Algorithm Visualizer",
-            titleInputWidth: 18, 
+            titleInputWidth: 17, 
             moreInformation: "Java, Springboot, Maven, Docker",
             moreInformationInputWidth: 27,
             date: "Sep. 2016 - Dec. 2016",
@@ -38,6 +38,7 @@ class Projects extends Component {
             defaultMoreInformationInputWidth: 10,
             defaultDate: "Month Year - Month Year",
             defaultDateInputWidth: 20,
+            addButton: "none",
         }
     }
 
@@ -93,11 +94,44 @@ class Projects extends Component {
         })
     }
 
+    showAddButton = event => {
+        event.preventDefault();
+        this.setState({
+            addButton: "inline-block",
+        })
+    }
+    
+    hideAddButton = event => {
+        event.preventDefault();
+        this.setState({
+            addButton: "none",
+        })
+    }
+
+    addProjectElement = event => {
+        let defaultProject = {
+            title: this.state.defaultTitle,
+            titleInputWidth: this.state.defaultTitleInputWidth,
+            moreInformation: "",
+            moreInformationInputWidth: this.state.defaultMoreInformationInputWidth,
+            date: this.state.defaultDate,
+            dateInputWidth: this.state.defaultDateInputWidth,
+            descriptions: [{text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab error, facilis officia libero!", height: "22px"}]
+        }
+
+        let newProjects = [...this.state.projects, defaultProject];
+
+        this.setState({
+            projects: newProjects,
+        })
+    }
+
     render(){
         return (
             <div className={ProjectsCSS.mainContainer}>
-                <div className={ProjectsCSS.titleContainer}>
-                    <p className={ProjectsCSS.title}>PROJECTS</p>
+                <div className={ProjectsCSS.titleContainer} onMouseEnter={this.showAddButton} onMouseLeave={this.hideAddButton}>
+                    <span className={ProjectsCSS.title}>PROJECTS</span>
+                    <i style={{display: this.state.addButton}} onClick={this.addProjectElement} className="fa-solid fa-plus"></i>
                 </div>
 
                 {this.state.projects.map((project, projectIndex) => {
