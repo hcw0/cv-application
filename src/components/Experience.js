@@ -290,19 +290,6 @@ class Experience extends Component{
                                     onChange={event => { this.handleInputChange(event, experienceIndex); this.changeInputWidth(event, experienceIndex) }}
                                     onBlur={event => { this.setNameInputIfEmpty(event, experienceIndex) }} />
                             </div>
-                            {/* <ul className={ExperienceCSS.contributionsContainer}>
-                                {experience.contributions.map((contribution, contributionIndex) => {
-                                    return (
-                                        <li key={contributionIndex}>
-                                            <textarea style={{height: this.state.experiences[experienceIndex].contributions[contributionIndex].height}}
-                                            className={ExperienceCSS.contribution} value={contribution.text} name="" id=""
-                                            rows="1" onChange={event => {this.handleTextAreaChange(event, experienceIndex, contributionIndex); 
-                                            this.resizeTextArea(event, experienceIndex, contributionIndex)}}
-                                            onBlur={event => this.deleteContributionIfEmpty(event, experienceIndex, contributionIndex)}></textarea>
-                                        </li>
-                                    )
-                                })}
-                            </ul> */}
                             <div className={ExperienceCSS.contributionsContainer}>
                                 {experience.contributions.map((contribution, contributionIndex) => {
                                     return (

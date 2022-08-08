@@ -36,7 +36,8 @@ class Projects extends Component {
             projects: [defaultProject1, defaultProject2],
             defaultTitle: "Project name",
             defaultTitleInputWidth: 11,
-            defaultMoreInformationInputWidth: 10,
+            defaultMoreInformation: "More information",
+            defaultMoreInformationInputWidth: 15,
             defaultDate: "Month Year - Month Year",
             defaultDateInputWidth: 20,
             addButton: "none",
@@ -113,7 +114,7 @@ class Projects extends Component {
         let defaultProject = {
             title: this.state.defaultTitle,
             titleInputWidth: this.state.defaultTitleInputWidth,
-            moreInformation: "",
+            moreInformation: "More information",
             moreInformationInputWidth: this.state.defaultMoreInformationInputWidth,
             date: this.state.defaultDate,
             dateInputWidth: this.state.defaultDateInputWidth,
@@ -271,21 +272,7 @@ class Projects extends Component {
                                         onChange={event => { this.handleInputChange(event, projectIndex); this.changeInputWidth(event, projectIndex) }}
                                         onBlur={event => { this.setInputIfEmpty(event, projectIndex) }} />
                             </div>
-
-                            {/* <ul className={ProjectsCSS.descriptionContainer}>
-                                {project.descriptions.map((description, descriptionIndex) => {
-                                    return (
-                                        <li key={descriptionIndex}>
-                                            <textarea style={{height: description.height}}
-                                            className={ProjectsCSS.description} value={description.text} name=""
-                                            rows="1" onChange={event => {this.handleTextAreaChange(event, projectIndex, descriptionIndex); 
-                                            this.resizeTextArea(event, projectIndex, descriptionIndex)}}
-                                            onBlur={event => this.deleteDescriptionIfEmpty(event, projectIndex, descriptionIndex)}></textarea>
-                                            <i onClick={event => this.deleteProjectElement(event, projectIndex)} className="fa-solid fa-minus"></i>
-                                        </li>
-                                    )
-                                })}
-                            </ul> */}
+                            
                             <div className={ProjectsCSS.descriptionContainer}>
                                 {project.descriptions.map((description, descriptionIndex) => {
                                     return (
