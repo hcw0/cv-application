@@ -9,7 +9,7 @@ class Skills extends Component {
             title: "Languages:",
             titleInputWidth: 10,
             description: "Python, Java, C++, PostgreSQL, JavaScript, HTML, CSS",
-            descriptionHeight: "20px",
+            descriptionHeight: "22px",
             deleteButton: "none"
         }
 
@@ -17,7 +17,7 @@ class Skills extends Component {
             title: "Frameworks and tools:",
             titleInputWidth: 18,
             description: "React, Flask, Node.js, Maven, Docker, Springboot, Git, VS Code, Next.js",
-            descriptionHeight: "20px", 
+            descriptionHeight: "22px", 
             deleteButton: "none"
         }
 
