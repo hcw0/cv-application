@@ -106,3 +106,9 @@
     padding: 8px;
     margin-left: 10px;
 }
+
+@media print {
+    .container, .mainContainer {
+        break-inside: avoid;
+    }
+}

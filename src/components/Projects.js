@@ -272,7 +272,7 @@ class Projects extends Component {
                                         onChange={event => { this.handleInputChange(event, projectIndex); this.changeInputWidth(event, projectIndex) }}
                                         onBlur={event => { this.setInputIfEmpty(event, projectIndex) }} />
                             </div>
-                            
+
                             <div className={ProjectsCSS.descriptionContainer}>
                                 {project.descriptions.map((description, descriptionIndex) => {
                                     return (
@@ -283,7 +283,7 @@ class Projects extends Component {
                                                 <div className={ProjectsCSS.dotContainer}>
                                                     <i className="fa-solid fa-circle"></i>
                                                 </div>
-
+                                        
                                                 <textarea style={{height: description.height}}
                                                 className={ProjectsCSS.description} value={description.text} name=""
                                                 rows="1" onChange={event => {this.handleTextAreaChange(event, projectIndex, descriptionIndex); 

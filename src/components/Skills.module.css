@@ -37,3 +37,9 @@
     width: 95%;
     max-width: 95%;
 }
+
+@media print {
+    .container, .mainContainer {
+        break-inside: avoid;
+    }
+}
