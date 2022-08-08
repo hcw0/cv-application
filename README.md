@@ -1,7 +1,7 @@
 # **Weather App**: 
-* [Live App]()
+* [Live App](https://hcw0.github.io/cv-application/)
 
-![preview-image]()
+![preview-image](./src/preview.png)
 
 ## **Description**:
 * React application that allows users to create a resume and print it or save it as a PDF
