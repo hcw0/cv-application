@@ -1,6 +1,6 @@
 {
   "name": "cv-application",
-  "homepage": "https://github.com/hcw0/cv-application",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
